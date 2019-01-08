@@ -10,6 +10,8 @@
 @Description:
 """
 from django.contrib import admin
+from django.contrib.admin.models import LogEntry
+from lbyledu.logentryadmin import LogEntryAdmin
 from article.admin import *
 from organization.admin import *
 from users.admin import *
@@ -36,3 +38,5 @@ admin_site.register(Organization, OrganizationAdmin)
 admin_site.register(Leader, LeaderAdmin)
 
 admin_site.register(UserProfile, UserProfileAdmin)
+
+admin_site.register(LogEntry, LogEntryAdmin)

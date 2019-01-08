@@ -85,8 +85,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                'lbyledu.global_settings.global_settings',
             ],
         },
     },
@@ -144,7 +142,11 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
+
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+
+DATE_FORMAT = 'Y-m-d'
 
 
 # Static files (CSS, JavaScript, Images)
@@ -192,11 +194,3 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
-
-# 全局变量
-EDU_INFO = 8
-RESEARCH = 13
-RESOURCE = 19
-AFFAIRS = 11
-POLICY = 30
-SHOW = 34

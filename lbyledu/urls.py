@@ -18,13 +18,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from article.views import ArticleView, IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name="index"),
-    path('organization/', include('organization.urls', namespace="organization")),
-    path('modules/', include('modules.urls', namespace="modules")),
-    path('article/<int:article_id>', ArticleView.as_view(), name="article"),
+    path('', include('organization.urls', namespace="organization")),
+    path('', include('article.urls'), name="article"),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

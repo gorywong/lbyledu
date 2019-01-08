@@ -14,7 +14,7 @@ from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from django.utils.timezone import now
 
-from organization.models import Orgnization
+from organization.models import Organization
 
 
 class UserProfile(AbstractUser):
@@ -32,7 +32,7 @@ class UserProfile(AbstractUser):
     level = models.CharField(max_length=50, verbose_name="级别", default="")
     birthday = models.DateField(verbose_name="生日", null=True, blank=True)
     gender = models.CharField(choices=GENDER_CHOICES, default="male", max_length=6, verbose_name="性别")
-    organization = models.ForeignKey(Orgnization, on_delete=models.CASCADE, default="1", verbose_name="单位")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, default="1", verbose_name="单位")
     position = models.CharField(choices=POSITION_CHOICES, default="teacher", max_length=7, verbose_name="职务")
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name="电话")
     create_time = models.DateTimeField(default=now, verbose_name="创建时间")

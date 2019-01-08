@@ -56,7 +56,7 @@ class Article(BaseModel):
     title = models.CharField(max_length=200, unique=True, verbose_name="标题")
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name="分类")
     author = models.CharField(max_length=50, verbose_name="作者")
-    origin = models.ForeignKey('Organization', on_delete=models.CASCADE, verbose_name="单位")
+    origin = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="单位")
     content = RichTextUploadingField(verbose_name="正文")
     pub_date = models.DateTimeField(default=now, verbose_name="发布时间")
     status = models.CharField(choices=STATUS_CHOICES, max_length=1, default='p', verbose_name="文章状态")
@@ -101,8 +101,8 @@ class Article(BaseModel):
 
 class Category(BaseModel):
     name = models.CharField(max_length=30, unique=True, verbose_name="分类名")
-    parent_category = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, verbose_name="父级分类")
-    default_child_category = models.ForeignKey('self', blank=True, null=True, limit_choices_to={'parent_category__isnull': False}, on_delete=models.CASCADE, verbose_name="默认子类")
+    parent_category = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, related_name='+', verbose_name="父级分类")
+    default_child_category = models.ForeignKey('self', blank=True, null=True, limit_choices_to={'parent_category__isnull': False}, related_name='+', on_delete=models.CASCADE, verbose_name="默认子类")
 
     class Meta:
         ordering = ['id']

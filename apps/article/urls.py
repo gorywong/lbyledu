@@ -15,6 +15,6 @@ from django.urls import path, include
 
 app_name = 'article'
 urlpatterns = [
-    path('category/<int:parent_id>/<int:child_id>', InfoView.as_view(), name="category_detail"),
-    path('article/<int:year>/<int:month>/<int:day>/<int:id>', LeaderInfoView.as_view(), name="detail_by_id")
+    #path('category/<int:parent_id>/<int:child_id>', InfoView.as_view(), name="category_detail"),
+    #path('article/<int:year>/<int:month>/<int:day>/<int:id>', LeaderInfoView.as_view(), name="detail_by_id")
 ]

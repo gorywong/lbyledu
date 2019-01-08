@@ -10,18 +10,41 @@
 @Description:
 """
 import logging
+from abc import abstractmethod
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils.functional import cached_property
 from django.utils.timezone import now
 from django.urls import reverse
-from article.models import BaseModel
+
+from lbyledu.utils import get_current_site, cache_decorator, cache
 
 logger = logging.getLogger(__name__)
 
 
-class Orgnization(BaseModel):
+class BaseModel(models.Model):
+    id = models.AutoField(primary_key=True)
+    created_time = models.DateTimeField(default=now, verbose_name="创建时间")
+    last_mod_time = models.DateTimeField(default=now, verbose_name="修改时间")
+
+    def save(self, *args, **kwargs):
+        pass
+    
+    def get_full_url(self):
+        site = get_current_site().domain
+        url = "http://{site}{path}".format(site=site, path=self.get_absolute_url())
+        return url
+
+    class Meta:
+        abstract = True
+
+    @abstractmethod
+    def get_absolute_url(self):
+        pass
+
+
+class Organization(BaseModel):
     CATEGORY_CHOICES = (
         ('center', '中心学校'),
         ('middle', '中学'),
@@ -63,7 +86,7 @@ class Leader(BaseModel):
     gender = models.CharField(choices=GENDER_CHOICES, default="male", max_length=6, verbose_name="性别")
     views = models.PositiveIntegerField(default=0, verbose_name="浏览量")
     birthday = models.DateField(verbose_name="生日", null=True, blank=True)
-    organization = models.ForeignKey(Orgnization, on_delete=models.CASCADE, verbose_name="单位")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="单位")
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name="联系电话")
     desc = RichTextUploadingField(verbose_name="简介")
 

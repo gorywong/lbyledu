@@ -15,6 +15,6 @@ from django.urls import path, include
 
 app_name = 'organization'
 urlpatterns = [
-    path('organization/<org_category>/<int:org_id>', InfoView.as_view(), name="org_detail"),
-    path('leaderdetail/<int:leader_id>', LeaderInfoView.as_view(), name="leader_detail")
+    #path('organization/<org_category>/<int:org_id>', InfoView.as_view(), name="org_detail"),
+    #path('leaderdetail/<int:leader_id>', LeaderInfoView.as_view(), name="leader_detail")
 ]

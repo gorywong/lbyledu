@@ -13,7 +13,6 @@ import logging
 from hashlib import md5
 
 from django.core.cache import cache
-from django.contrib.sites.models import Site
 
 
 logger = logging.getLogger(__name__)
@@ -50,10 +49,10 @@ def cache_decorator(expiration=3 * 60):
     return wrapper
 
 
-@cache_decorator
-def get_current_site():
-    site = Site.objects.get_current()
-    return site
+# @cache_decorator
+# def get_current_site():
+#     site = Site.objects.get_current()
+#     return site
 
 
 # def send_email(emailto, title, content):

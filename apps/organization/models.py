@@ -18,7 +18,7 @@ from django.utils.functional import cached_property
 from django.utils.timezone import now
 from django.urls import reverse
 
-from lbyledu.utils import get_current_site, cache_decorator, cache
+from lbyledu.utils import cache_decorator, cache
 
 logger = logging.getLogger(__name__)
 
@@ -29,12 +29,7 @@ class BaseModel(models.Model):
     last_mod_time = models.DateTimeField(default=now, verbose_name="修改时间")
 
     def save(self, *args, **kwargs):
-        pass
-    
-    def get_full_url(self):
-        site = get_current_site().domain
-        url = "http://{site}{path}".format(site=site, path=self.get_absolute_url())
-        return url
+        super().save(*args, **kwargs)
 
     class Meta:
         abstract = True
@@ -51,7 +46,7 @@ class Organization(BaseModel):
         ('primary', '小学'),
         ('kindergarten', '幼儿园')
     )
-    name = models.CharField(max_length=50, verbose_name="单位")
+    name = models.CharField(max_length=50, verbose_name="单位名称")
     category = models.CharField(choices=CATEGORY_CHOICES, default='center', max_length=12, verbose_name="分类")
     views = models.PositiveIntegerField(default=0, verbose_name="浏览量")
     address = models.CharField(max_length=150, verbose_name="地址")

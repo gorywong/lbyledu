@@ -45,7 +45,7 @@ class UserProfile(AbstractUser):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.realname
+        return self.username
 
 
 class EmailVerifyRecord(models.Model):

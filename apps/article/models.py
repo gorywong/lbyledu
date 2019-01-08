@@ -20,7 +20,7 @@ from django.utils.functional import cached_property
 from django.utils.timezone import now
 from ckeditor_uploader.fields import RichTextUploadingField
 
-from lbyledu.utils import get_current_site, cache_decorator, cache
+from lbyledu.utils import cache_decorator, cache
 from organization.models import Organization
 
 logger = logging.getLogger(__name__)
@@ -32,12 +32,7 @@ class BaseModel(models.Model):
     last_mod_time = models.DateTimeField(default=now, verbose_name="修改时间")
 
     def save(self, *args, **kwargs):
-        pass
-    
-    def get_full_url(self):
-        site = get_current_site().domain
-        url = "http://{site}{path}".format(site=site, path=self.get_absolute_url())
-        return url
+        super().save(*args, **kwargs)
 
     class Meta:
         abstract = True
@@ -54,7 +49,7 @@ class Article(BaseModel):
         ('p', '发表')
     )
     title = models.CharField(max_length=200, unique=True, verbose_name="标题")
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name="分类")
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, limit_choices_to={'parent_category__isnull': False}, verbose_name="分类")
     author = models.CharField(max_length=50, verbose_name="作者")
     origin = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="单位")
     content = RichTextUploadingField(verbose_name="正文")
@@ -81,9 +76,6 @@ class Article(BaseModel):
             'day': self.created_time.day
         })
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
     def viewed(self):
         self.veiws += 1
         self.save(update_fields=['views'])
@@ -101,7 +93,7 @@ class Article(BaseModel):
 
 class Category(BaseModel):
     name = models.CharField(max_length=30, unique=True, verbose_name="分类名")
-    parent_category = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, related_name='+', verbose_name="父级分类")
+    parent_category = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, limit_choices_to={'parent_category__isnull': True}, related_name='+', verbose_name="父级分类")
     default_child_category = models.ForeignKey('self', blank=True, null=True, limit_choices_to={'parent_category__isnull': False}, related_name='+', on_delete=models.CASCADE, verbose_name="默认子类")
 
     class Meta:
@@ -113,7 +105,7 @@ class Category(BaseModel):
         if self.parent_category:
             return self.parent_category.name + '-->' + self.name
         else:
-            return "顶级版块 " + '「' + self.name + '」'
+            return self.name
 
     def get_absolute_url(self):
         if self.parent_category:

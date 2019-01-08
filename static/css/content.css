@@ -1,0 +1,84 @@
+.content-page {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 15px 30px;
+	color: #34495e;
+	z-index: 1;
+	font-size: 1em;
+	line-height: 150%;
+	font-weight: 300;
+}
+
+.main-content-body.font-size-md .content-page {
+	font-size: 1.2em;
+}
+
+.main-content-body.font-size-lg .content-page {
+	font-size: 1.4em;
+}
+
+.content-page-title {
+	text-align: center;
+	font-weight: 400;
+}
+
+.content-page-date {
+	color: #999;
+	text-align: center;
+	font-size: 12px;
+	padding: 5px;
+	margin-bottom: 15px;
+}
+
+.content-page-date span {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+.content-page p{
+	color: #333 !important;
+	text-indent: 2.1em !important;
+	text-align: justify;
+	margin-bottom: 0.2rem !important;
+}
+
+.content-page p.caption {
+	color: #333 !important;
+	text-indent: 0 !important;
+	margin-bottom: 0.2rem !important;
+}
+
+.content-page img {
+	display: block;
+	max-width: 100% !important;
+	height: auto !important;
+	margin: 15px auto;
+}
+
+.pager {
+	padding: 0 30px;
+}
+
+.pagination {
+	justify-content: space-between;
+}
+
+.page-item {
+	font-size: 14px;
+	border: solid 1px #DDD;
+	border-radius: 50px;
+	padding: 5px 15px;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+.page-item:hover {
+	text-decoration: none;
+	background-color: #EEE;
+}
+
+.fa-angle-double-left,
+.fa-angle-double-right {
+	font-size: 16px;
+}

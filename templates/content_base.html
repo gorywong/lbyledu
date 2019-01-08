@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load staticfiles %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>学校概况 - 豫灵镇中心学校</title>
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/content.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!--[if lt IE 9]><p class="kill-ie">你的浏览器版本太低，请升级到高版本浏览器！</p><![endif]-->
+    <header class="main-header">
+        <div class="main-header-wordmark container-fluid">
+            <div class="main-header-bar">
+                <div class="main-search">
+                    <form action="">
+                        <input type="text" class="main-search-input form-control" placeholder="搜索">
+                        <button type="submit" class="main-search-submit btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="main-wordmark">
+                    <h1>灵宝市豫灵镇中心学校</h1>
+                    <h4>Lingbao Yuling Center School</h4>
+                </div>
+            </div>
+        </div>
+        <div class="main-header-navbar container-fluid">
+            <nav class="main-header-bar navbar navbar-expand-sm">
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-header-nav"
+                        aria-controls="main-header-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="navbar-toggler-icon fa fa-bars"></i>
+                    </button>
+                </div>
+                <div id="main-header-nav" class="collapse navbar-collapse">
+                    <ul class="main-nav nav navbar-nav nav-justified">
+                        <li class="nav-item"><a href="{% url 'index' %}">首页</a></li>
+                        <li class="nav-item"><a name="active" class="active" href="{% url 'organization:org_info' 1 %}">学校概况</a></li>
+                        <li class="nav-item"><a href="{% url 'modules:eduinfo' EDU_INFO %}">教育信息</a></li>
+                        <li class="nav-item"><a href="{% url 'modules:research' RESEARCH %}">学科研究</a></li>
+                        <li class="nav-item"><a href="{% url 'modules:resource' RESOURCE %}">资源中心</a></li>
+                        <li class="nav-item"><a href="{% url 'modules:eduinfo' AFFAIRS %}">政务公开</a></li>
+                        <li class="nav-item"><a href="{% url 'modules:policy' POLICY %}">政策法规</a></li>
+                        <li class="nav-item"><a href="{% url 'modules:show' SHOW %}">学校风采</a></li>
+                        <li class="nav-item"><a href="javascript:void(0)">网上办公</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div id="toolbar">
+        <div class="contactus">
+            <a>
+                联系我们
+                <div class="contactus-card">
+                    <div class="contact-method">
+                        <p>地址：河南省灵宝市豫灵镇亚武路</p>
+                        <p>邮编：472533</p>
+                        <p>电话：0398-2525678</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="returntop">
+            <a><i class="fa fa-arrow-up"></i></a>
+        </div>
+    </div>
+    <div class="main-content container">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="main-content container">
+                <div class="row row-offcanvas row-offcanvas-left">
+                    <div class="col-sm-4 col-md-3 sidebar-offcanvas main-content-sidebar" id="sidebar">
+                        <ul class="sidebar-list-group">
+                            <li><a href="{% url 'organization:org_info' 1 %}" class="sidebar-list-item top">学校概况</a></li>
+                            <li><a class="sidebar-list-item toggle active">学校概况
+                                    <i class="fa fa-angle-down float-right"></i>
+                                    <i class="fa fa-angle-right float-right hidden"></i>
+                                </a>
+                                <ul class="sidebar-list-group child">
+                                    <li><a href="{% url 'organization:org_info' 1 %}" class="sidebar-list-item {% ifequal org.sort 'center' %}active{% endifequal %}">中心学校</a></li>
+                                    <li><a class="sidebar-list-item toggle {% ifequal org.sort 'middle' %}active{% endifequal %}">中学
+                                            <i class="fa fa-angle-down float-right hidden"></i>
+                                            <i class="fa fa-angle-right float-right"></i>
+                                        </a>
+                                        <ul class="sidebar-list-group grand-child hidden">
+                                            {% block middle %}
+                                            {% endblock middle %}
+                                        </ul>
+                                    </li>
+                                    <li><a class="sidebar-list-item toggle {% ifequal org.sort 'primary' %}active{% endifequal %}">小学
+                                            <i class="fa fa-angle-down float-right hidden"></i>
+                                            <i class="fa fa-angle-right float-right"></i>
+                                        </a>
+                                        <ul class="sidebar-list-group grand-child hidden">
+                                            {% block primary %}
+                                            {% endblock primary %}
+                                        </ul>
+                                    </li>
+                                    <li><a class="sidebar-list-item toggle {% ifequal org.sort 'kindergarten' %}active{% endifequal %}">幼儿园
+                                            <i class="fa fa-angle-down float-right hidden"></i>
+                                            <i class="fa fa-angle-right float-right"></i>
+                                        </a>
+                                        <ul class="sidebar-list-group grand-child hidden">
+                                            {% block kindergarten %}
+                                            {% endblock kindergarten %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="sidebar-list-item">领导介绍</a></li>
+                            <li><a href="#" class="sidebar-list-item">下属机构</a></li>
+                            <li><a href="#" class="sidebar-list-item">学校荣誉</a></li>
+                            <li><a href="#" class="sidebar-list-item">教育设施</a></li>
+                            <li><a href="#" class="sidebar-list-item">教研成果</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-8 col-md-9 main-content-body">
+                        <div class="setting-font-size btn-group-vertical">
+                            <button type="button" name="lg" class="btn btn-xs btn-default">大</button>
+                            <button type="button" name="md" class="btn btn-xs btn-default">中</button>
+                            <button type="button" class="btn btn-xs btn-default active">小</button>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <span class="panel-title-word" data-toggle="offcanvas">
+                                        <i class="fa fa-align-right"></i> 整体概况
+                                    </span>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">首页</a></li>
+                                        <li class="breadcrumb-item"><a href="#">学校概况</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">{% block bread %}{% endblock bread %}</li>
+                                    </ol>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="content-page">
+                                    <h2 class="content-page-title">{% block title %}{% endblock title %}</h2>
+                                    <div class="content-page-date">
+                                        <span>发布时间：{% block add_time %}{% endblock add_time %}</span>
+                                        <span>来源：中心学校办公室</span>
+                                        <span>作者: admin</span>
+                                        <span>点击量: 10086</span>
+                                    </div>
+                                    {% block content %}
+                                    {% endblock content %}
+                                </div>
+                            </div>
+                            <div>
+                                <nav aria-label="page navigation" class="pager">
+                                    <ul class="pagination">
+                                        <li class="previous"><a class="page-item" href="#"><i class="fa fa-angle-double-left"></i>
+                                                上一篇</a></li>
+                                        <li class="next"><a class="page-item" href="#">下一篇 <i class="fa fa-angle-double-right"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>灵宝市豫灵镇中心学校 © 版权所有 2007-2018</p>
+        <p>地址：河南省灵宝市豫灵镇亚武路 邮编：472533</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+{% extends "content_base.html" %}
+
+
+{% block middle %}
+{% for each_middle in middle %}
+<li><a href="{% url 'organization:org_info' each_middle.id %}" class="sidebar-list-item {% ifequal each_middle.id org.id %}active{% endifequal %}">{{ each_middle.name }}</a></li>
+{% endfor %}
+{% endblock middle %}
+{% block primary %}
+{% for each_primary in primary %}
+<li><a href="{% url 'organization:org_info' each_primary.id %}" class="sidebar-list-item {% ifequal each_primary.id org.id %}active{% endifequal %}">{{ each_primary.name }}</a></li>
+{% endfor %}
+{% endblock primary %}
+{% block kindergarten %}
+{% for each_kindergarten in kindergarten %}
+<li><a href="{% url 'organization:org_info' each_kindergarten.id %}" class="sidebar-list-item {% ifequal each_kindergarten.id org.id %}active{% endifequal %}">{{ each_kindergarten.name }}</a></li>
+{% endfor %}
+{% endblock kindergarten %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+{% block bread %}
+{{ bread }}
+{% endblock bread %}
+{% block add_time %}
+{{ add_time }}
+{% endblock add_time %}
+{% block content %}
+{{ desc | safe }}
+{% endblock content %}

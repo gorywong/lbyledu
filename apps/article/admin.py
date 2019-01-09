@@ -28,6 +28,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class BannerAdmin(admin.ModelAdmin):
     list_display = ('id','article')
+    list_display_links = ('id', 'article')
 
 class SiteSettingAdmin(admin.ModelAdmin):
     pass

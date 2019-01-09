@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link href="{% static 'css/list.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block sidebar %}
+    {% query nav_category_list parent_category_id=current_parent_id as child_categorys %}
+    {% for node in child_categorys %}
+    <li><a href="{{ node.get_absolute_url }}" class="sidebar-list-item">{{ node.name }}</a></li>
+    {% endfor %}
+{% endblock sidebar %}
+
+{% block main %}
+    <div class="col-sm-8 col-md-9 main-content-body">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="panel-title-word" data-toggle="offcanvas">
+                        {% query nav_category_list id=current_parent_id as parent_category %}
+                        <i class="fa fa-align-right"></i> {% for item in parent_category %}{{ parent_category.name }}{% endfor %}
+                    </span>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">首页</a></li>
+                        {% for item in parent_category %}
+                            <li class="breadcrumb-item"><a href="{{ parent_category.get_absolute_url }}">{{ parent_category.name }}</a></li>
+                        {% endfor %}
+                        {% query nav_category_list id=current_child_id as child_category %}
+                        {% for item in child_category %}
+                            <li class="breadcrumb-item active" aria-current="page">{{ child_category.name }}</li>
+                        {% endfor %}
+                    </ol>
+                </h3>
+            </div>
+            <div class="main-list-body panel-body">
+                <ul class="list-group">
+                {% block articles %}
+                
+                {% endblock articles %}
+                </ul>
+                <nav aria-label="Page navigation example" class="main-pagination">
+                    <ul class="pagination pagination-sm justify-content-end">
+                        <li class="page-item"><a class="page-link" href="#">首页</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+                        <li class="page-item"><a class="page-link" href="#">尾页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

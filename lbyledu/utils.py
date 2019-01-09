@@ -61,24 +61,18 @@ def cache_decorator(expiration=3 * 60):
 
 
 def get_site_setting():
-    value = cache.get('get_site_setting')
-    if value:
-        return value
-    else:
-        from article.models import SiteSettings
-        if not SiteSettings.objects.count():
-            setting = SiteSettings()
-            setting.sitename = "灵宝市豫灵镇中心学校"
-            setting.site_description = "基于Django的网上办公系统"
-            setting.site_seo_description = "基于Django的网上办公系统"
-            setting.site_keywords = "灵宝市豫灵镇中心学校, 事业单位, 网上办公"
-            setting.article_sub_length = 122
-            setting.beiancode = ''
-            setting.analyticscode = ''
-            setting.show_gongan_code = False
-            setting.gongan_beiancode = ''
-            setting.save()
-        value = SiteSettings.objects.first()
-        logger.info('set cache get_blog_setting')
-        cache.set('get_blog_setting', value)
-        return value
+    from article.models import SiteSetting
+    if not SiteSetting.objects.count():
+        setting = SiteSetting()
+        setting.sitename = "灵宝市豫灵镇中心学校"
+        setting.site_description = "基于Django的网上办公系统"
+        setting.site_seo_description = "基于Django的网上办公系统"
+        setting.site_keywords = "灵宝市豫灵镇中心学校, 事业单位, 网上办公"
+        setting.article_sub_length = 122
+        setting.beiancode = ''
+        setting.analyticscode = ''
+        setting.show_gongan_code = False
+        setting.gongan_beiancode = ''
+        setting.save()
+    value = SiteSetting.objects.first()
+    return value

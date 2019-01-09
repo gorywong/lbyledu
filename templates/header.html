@@ -1,0 +1,62 @@
+{% load article_tags %}
+<header class="main-header">
+    <div class="main-header-wordmark container-fluid">
+        <div class="main-header-bar">
+            <div class="main-search">
+                <form action="">
+                    <input type="text" class="main-search-input form-control" placeholder="搜索">
+                    <button type="submit" class="main-search-submit btn"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="main-wordmark">
+                <h1>灵宝市豫灵镇中心学校</h1>
+                <h4>Lingbao Yuling Center School</h4>
+            </div>
+        </div>
+    </div>
+    <div class="main-header-navbar container-fluid">
+        <nav class="main-header-bar navbar navbar-expand-sm">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-header-nav"
+                    aria-controls="main-header-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="navbar-toggler-icon fa fa-bars"></i>
+                </button>
+            </div>
+            <div id="main-header-nav" class="collapse navbar-collapse">
+                <ul class="main-nav nav navbar-nav nav-justified">
+                    <li class="nav-item"><a href="{% url 'index' %}">首页</a></li>
+                    {% query nav_category_list parent_category=None as root_categorys %}
+                    {% for node in root_categorys %}
+                        <li class="nav-item"><a {% ifequal current_parent_id node.id %}class="active"{% endifequal %} href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
+                    {% endfor %}
+                    <li class="nav-item" data-toggle="tab" data-target="#main-nav-{{ forloop.counter }}"><a href="javascript:void(0)">网上办公</a></li>
+                </ul>
+
+                <ul class="main-nav-more">
+                    {% for node in root_categorys %}
+                    {% query nav_category_list parent_category=node as child_categorys %}
+                        {% if child_categorys %}
+                        <li class="fade" id="main-nav-{{ forloop.counter }}">
+                            <div class="row">
+                                <div class="col-sm-5 main-nav-item">
+                                    <ul class="main-nav-list">
+                                    {% for child in child_categorys %}
+                                        <li><a href="{{ child.get_absolute_url }}">{{ child.name }}</a></li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3 main-nav-item">
+                                    <span class="main-nav-words">{{ SITE_NAME }}</span>
+                                </div>
+                                <div class="col-sm-4 main-nav-item">
+                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>

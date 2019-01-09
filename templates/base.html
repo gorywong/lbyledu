@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block head_title %}{% endblock head_title %}</title>
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    {% block css %}{% endblock css %}
+</head>
+
+<body>
+
+    {% include "header.html" %}
+
+    {% include "toolbar.html" %}
+
+    <div class="main-content container">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="main-content container">
+                <div class="row row-offcanvas row-offcanvas-left">
+                    <div class="col-sm-4 col-md-3 sidebar-offcanvas main-content-sidebar" id="sidebar">
+                        <ul class="sidebar-list-group">
+                            {% block sidebar %}
+                            
+                            {% endblock sidebar %}
+                        </ul>
+                    </div>
+                    <div class="col-sm-8 col-md-9 main-content-body">
+                        {% block main %}
+                        
+                        {% endblock main %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% include "footer.html" %}
+
+        <!-- JavaScript -->
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        {% block js %}{% endblock js %}
+</body>
+
+</html>

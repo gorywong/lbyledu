@@ -17,7 +17,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+# sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -85,6 +85,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
+                'lbyledu.context_processors.seo_processor',
             ],
         },
     },
@@ -167,7 +169,7 @@ CKEDITOR_CONFIGS = {
             ['Source', '-', 'Bold', 'Italic']
         ],
         'toolbar_YourCustomToolbarConfig': [
-            {'name': 'document', 'items': ['Source', 'Save', 'Preview']},
+            {'name': 'document', 'items': ['Source', 'Save']},
             {'name': 'clipboard', 'items': ['Undo', 'Redo']},
             {'name': 'editing', 'items': ['Find', 'Replace', 'SelectAll']},
             {'name': 'basicstyles', 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'RemoveFormat']},
@@ -179,7 +181,6 @@ CKEDITOR_CONFIGS = {
              'items': ['Image', 'Upload', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar']},
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
             {'name': 'yourcustomtools', 'items': [
                 # put the name of your editor.ui.addButton here
                 'Preview',

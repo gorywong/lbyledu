@@ -18,8 +18,7 @@ register = template.Library()
 
 @register.simple_tag
 def query(qs, **kwargs):
-    """
-    template tag which allows queryset filtering. Usage:
+    """template tag which allows queryset filtering. Usage:
     {% query article author=author as articles %}
     {% for article in articles %}
     ...

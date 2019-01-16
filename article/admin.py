@@ -23,7 +23,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'parent_category', 'default_child_category')
 
 
 class BannerAdmin(admin.ModelAdmin):

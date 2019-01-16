@@ -77,7 +77,7 @@ class Article(BaseModel):
         })
 
     def viewed(self):
-        self.veiws += 1
+        self.views += 1
         self.save(update_fields=['views'])
 
     def get_admin_url(self):

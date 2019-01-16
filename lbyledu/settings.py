@@ -194,3 +194,6 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+# 分页
+PAGINATE_BY = 20

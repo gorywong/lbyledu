@@ -16,8 +16,12 @@ from article.models import Article, Category
 
 def seo_processor(request):
     site_settings = get_site_setting()
-    current_parent_id = request.path.split('/')[1]
-    current_child_id = request.path.split('/')[2]
+    if request.path.split('/')[1] == 'category':
+        current_parent_id = int(request.path.split('/')[2])
+        current_child_id = int(request.path.split('/')[3])
+    else:
+        current_parent_id = None
+        current_child_id = None
     value = {
         'SITE_NAME': site_settings.sitename,
         'SITE_SEO_DESCRIPTION': site_settings.site_seo_description,

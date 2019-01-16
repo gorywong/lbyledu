@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% load article_tags %}
+
+{% block head_title %}
+{{ article.title }} - 豫灵镇中心学校
+{% endblock head_title %}
+
+{% block css %}
+    <link href="{% static 'css/content.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block main %}
+{% query nav_category_list pk=current_parent_id as parent_category %}
+{% query nav_category_list pk=current_child_id as child_category %}
+<div class="col-12 main-content-body">
+    <div class="setting-font-size btn-group-vertical">
+        <button type="button" name="lg" class="btn btn-xs btn-default">大</button>
+        <button type="button" name="md" class="btn btn-xs btn-default">中</button>
+        <button type="button" class="btn btn-xs btn-default active">小</button>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="panel-title-word" data-toggle="offcanvas">
+                    <i class="fa fa-align-right"></i> {{ article.category.name }}
+                </span>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="">首页</a></li>
+                    <li class="breadcrumb-item"><a href="{{ parent_category.get_absolute_url }}">{{ article.category.parent_category }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ article.category.name }}</li>
+                </ol>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="content-page">
+                <h2 class="content-page-title">{{ article.title }}</h2>
+                <div class="content-page-date">
+                    <span>发布时间：{{ article.pub_date }}</span>
+                    <span>来源：{{ article.origin }}</span>
+                    <span>作者: {{ article.author }}</span>
+                    <span>点击量: {{ article.views }}</span>
+                </div>
+                {{ article.content | safe }}
+            </div>
+        </div>
+        <div>
+            <nav aria-label="page navigation" class="pager">
+                <ul class="pagination">
+                    <li class="previous"><a class="page-item" href="#"><i class="fa fa-angle-double-left"></i>
+                            上一篇</a></li>
+                    <li class="next"><a class="page-item" href="#">下一篇 <i class="fa fa-angle-double-right"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock main %}

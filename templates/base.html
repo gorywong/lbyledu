@@ -24,18 +24,13 @@
         <div class="row row-offcanvas row-offcanvas-left">
             <div class="main-content container">
                 <div class="row row-offcanvas row-offcanvas-left">
-                    <div class="col-sm-4 col-md-3 sidebar-offcanvas main-content-sidebar" id="sidebar">
-                        <ul class="sidebar-list-group">
-                            {% block sidebar %}
-                            
-                            {% endblock sidebar %}
-                        </ul>
-                    </div>
-                    <div class="col-sm-8 col-md-9 main-content-body">
-                        {% block main %}
-                        
-                        {% endblock main %}
-                    </div>
+                    {% block sidebar %}
+                    
+                    {% endblock sidebar %}
+
+                    {% block main %}
+                    
+                    {% endblock main %}
                 </div>
             </div>
         </div>

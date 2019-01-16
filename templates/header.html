@@ -1,4 +1,5 @@
 {% load article_tags %}
+{% load static %}
 <header class="main-header">
     <div class="main-header-wordmark container-fluid">
         <div class="main-header-bar">
@@ -24,12 +25,13 @@
             </div>
             <div id="main-header-nav" class="collapse navbar-collapse">
                 <ul class="main-nav nav navbar-nav nav-justified">
-                    <li class="nav-item"><a href="{% url 'index' %}">首页</a></li>
+                    <li class="nav-item"><a href="">首页</a></li>
+                    <li class="nav-item"><a href="javascript:void(0)">学校概况</a></li>
                     {% query nav_category_list parent_category=None as root_categorys %}
                     {% for node in root_categorys %}
-                        <li class="nav-item"><a {% ifequal current_parent_id node.id %}class="active"{% endifequal %} href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
+                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-{{ forloop.counter }}"><a {% ifequal current_parent_id node.id %}name="active" class="active"{% endifequal %} href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
                     {% endfor %}
-                    <li class="nav-item" data-toggle="tab" data-target="#main-nav-{{ forloop.counter }}"><a href="javascript:void(0)">网上办公</a></li>
+                    <li class="nav-item"><a href="javascript:void(0)">网上办公</a></li>
                 </ul>
 
                 <ul class="main-nav-more">

@@ -19,12 +19,24 @@ from .models import Article, Category
 
 
 class ArticleListView(ListView):
-    # template_name属性用于指定使用哪个模板进行渲染
+    model = Article
     template_name = 'article_index.html'
-
-    # context_object_name属性用于给上下文变量取名（在模板中使用该名字）
     context_object_name = 'article_list'
-
-    # 页面类型，分类目录或标签列表等
     paginate_by = settings.PAGINATE_BY
-    page_kwarg = 'page'
+
+    def get_queryset(self):
+        cate = get_object_or_404(Category, pk=self.kwargs.get('child_id'))
+        return super(ArticleListView, self).get_queryset().filter(category=cate)
+
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'article_detail.html'
+    context_object_name = 'article'
+    pk_url_kwarg = 'article_id'
+
+    def get_object(self, queryset=None):
+        obj = super(ArticleDetailView, self).get_object()
+        obj.viewed()
+        self.object = obj
+        return obj

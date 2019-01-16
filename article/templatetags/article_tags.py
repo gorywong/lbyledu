@@ -25,3 +25,13 @@ def query(qs, **kwargs):
     {% endfor %}
     """
     return qs.filter(**kwargs)
+
+@register.simple_tag
+def index_query(qs, **kwargs):
+    """template tag which allows queryset filtering. Usage:
+    {% query article author=author as articles %}
+    {% for article in articles %}
+    ...
+    {% endfor %}
+    """
+    return qs.filter(**kwargs)[:6]

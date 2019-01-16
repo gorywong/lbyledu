@@ -29,6 +29,7 @@ class MyAdminSite(admin.AdminSite):
 
 admin_site = MyAdminSite(name='admin')
 
+admin_site.register(Index, IndexAdmin)
 admin_site.register(Article, ArticleAdmin)
 admin_site.register(Category, CategoryAdmin)
 admin_site.register(Banner, BannerAdmin)

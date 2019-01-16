@@ -11,7 +11,7 @@
 """
 from django.conf import settings
 from lbyledu.utils import get_site_setting
-from article.models import Article, Category
+from article.models import Article, Category, Index
 
 
 def seo_processor(request):
@@ -31,7 +31,8 @@ def seo_processor(request):
         'current_child_id': current_child_id,
         'ARTICLE_SUB_LENGTH': site_settings.article_sub_length,
         'nav_category_list': Category.objects.all(),
-        'nav_pages': Article.objects.filter(has_check=True, status='p'),
+        'index_category_list': Index.objects.all(),
+        'nav_pages': Article.objects.filter(has_check=True, status='p').order_by('-pub_date'),
         'BEIAN_CODE': site_settings.beiancode,
         'ANALYTICS_CODE': site_settings.analyticscode,
         "BEIAN_CODE_GONGAN": site_settings.gongan_beiancode,

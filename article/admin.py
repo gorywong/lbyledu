@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Category, Banner, SiteSetting
+from .models import Article, Category, Banner, SiteSetting, Index
 
 # Register your models here.
 def make_checked(modeladmin, request, queryset):
@@ -10,6 +10,11 @@ def draft_article(modeladmin, request, queryset):
 
 make_checked.short_description = "审核所选的 文章"
 draft_article.short_description = '将选中的文章设置为草稿'
+
+class IndexAdmin(admin.ModelAdmin):
+    list_display = ('weight', 'category')
+    list_display_links = ('weight', 'category')
+
 
 class ArticleAdmin(admin.ModelAdmin):
     list_per_page = 20

@@ -15,7 +15,13 @@ from django.views.generic.detail import DetailView
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 
-from .models import Article, Category
+from .models import Article, Category, Index
+
+
+class IndexView(ListView):
+    model = Index
+    template_name = 'index.html'
+    context_object_name = 'category_list'
 
 
 class ArticleListView(ListView):

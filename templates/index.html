@@ -1,6 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh-CN">
-{% load staticfiles %}
 
 <head>
     <meta charset="utf-8" />
@@ -15,201 +15,11 @@
 </head>
 
 <body>
-    <header class="main-header">
-        <div class="main-header-wordmark container-fluid">
-            <div class="main-header-bar">
-                <div class="main-search">
-                    <form action="">
-                        <input type="text" class="main-search-input form-control" placeholder="搜索">
-                        <button type="submit" class="main-search-submit btn"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-                <div class="main-wordmark">
-                    <h1>灵宝市豫灵镇中心学校</h1>
-                    <h4>Lingbao Yuling Center School</h4>
-                </div>
-            </div>
-        </div>
-        <div class="main-header-navbar container-fluid">
-            <nav class="main-header-bar navbar navbar-expand-sm">
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-header-nav"
-                        aria-controls="main-header-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="navbar-toggler-icon fa fa-bars"></i>
-                    </button>
-                </div>
-                <div id="main-header-nav" class="collapse navbar-collapse">
-                    <ul class="main-nav nav navbar-nav nav-justified">
-                        <li class="nav-item"><a name="active" class="active" href="{% url 'index' %}">首页</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-1"><a href="{% url 'organization:org_info' 1 %}">学校概况</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-2"><a href="{% url 'modules:eduinfo' EDU_INFO %}">教育信息</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-3"><a href="{% url 'modules:research' RESEARCH %}">学科研究</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-4"><a href="{% url 'modules:resource' RESOURCE %}">资源中心</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-5"><a href="{% url 'modules:eduinfo' AFFAIRS %}">政务公开</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-6"><a href="{% url 'modules:policy' POLICY %}">政策法规</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-7"><a href="{% url 'modules:show' SHOW %}">学校风采</a></li>
-                        <li class="nav-item"><a href="javascript:void(0)">网上办公</a></li>
-                    </ul>
+    {% include "header.html" %}
 
-                    <ul class="main-nav-more">
-                        <li class="fade" id="main-nav-1">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="{% url 'organization:org_info' 1 %}">学校概况</a></li>
-                                        <li><a href="#">领导介绍</a></li>
-                                        <li><a href="#">下属机构</a></li>
-                                        <li><a href="#">学校荣誉</a></li>
-                                        <li><a href="#">教育设施</a></li>
-                                        <li><a href="#">教研成果</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="fade" id="main-nav-2">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="#">最新公告</a></li>
-                                        <li><a href="#">教育动态</a></li>
-                                        <li><a href="#">本地信息</a></li>
-                                        <li><a href="#">行事历</a></li>
-                                        <li><a href="#">政务公开</a></li>
-                                        <li><a href="#">平安校园</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="fade" id="main-nav-3">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="#">教研教改</a></li>
-                                        <li><a href="#">教研论文</a></li>
-                                        <li><a href="#">学教指导</a></li>
-                                        <li><a href="#">历任领导</a></li>
-                                        <li><a href="#">教学反思</a></li>
-                                        <li><a href="#">美文欣赏</a></li>
-                                        <li><a href="#">生活感悟</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="fade" id="main-nav-4">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="#">教育论文</a></li>
-                                        <li><a href="#">教学教案</a></li>
-                                        <li><a href="#">精选课件</a></li>
-                                        <li><a href="#">教育软件</a></li>
-                                        <li><a href="#">优秀作文</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="fade" id="main-nav-5">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="#">最新公告</a></li>
-                                        <li><a href="#">教育动态</a></li>
-                                        <li><a href="#">本地信息</a></li>
-                                        <li><a href="#">行事历</a></li>
-                                        <li><a href="#">政务公开</a></li>
-                                        <li><a href="#">平安校园</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="fade" id="main-nav-6">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="#">国家法律</a></li>
-                                        <li><a href="#">地方政策</a></li>
-                                        <li><a href="#">本地文件</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="fade" id="main-nav-7">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="#">学校新闻</a></li>
-                                        <li><a href="#">校长风采</a></li>
-                                        <li><a href="#">名师风采</a></li>
-                                        <li><a href="#">雏鹰风采</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+    {% include "toolbar.html" %}
+
     <div class="main-content container">
-        <div id="toolbar">
-            <div class="contactus">
-                <a>
-                    联系我们
-                    <div class="contactus-card">
-                        <div class="contact-method">
-                            <p>地址：河南省灵宝市豫灵镇亚武路</p>
-                            <p>邮编：472533</p>
-                            <p>电话：0398-2525678</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="returntop">
-                <a><i class="fa fa-arrow-up"></i></a>
-            </div>
-        </div>
         <div class="main-slide">
             <div class="main-slide-imgBox">
                 <div class="main-slide-btn main-slide-left"><i class="fa fa-chevron-left"></i></div>
@@ -291,399 +101,87 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-8">
                 <div class="row">
+                    {% query index_category_list weight__lte=6 as index_categorys %}
+                    {% for index_category in index_categorys %}
                     <div class="col-sm-12 col-md-6">
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><a href="#">学校新闻<span class="panel-more float-right">更多</span></a></h3>
+                                <h3 class="panel-title"><a href="{{ category.get_absolute_url }}">学校新闻<span class="panel-more float-right">更多</span></a></h3>
                             </div>
+                            {% index_query nav_pages category_id=index_category.category_id as articles %}
+                            {% if not articles %}
+                            {% index_query nav_pages category__parent_category__id=index_category.category_id as articles %}
+                            {% endif %}
                             <div class="panel-body">
                                 <ul class="panel-list">
+                                {% for article in articles %}
                                     <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇实验幼儿园：才艺展示秀出幼儿真风采</span>
-                                            <span class="panel-item-date">12-16</span>
+                                        <a href="{{ article.get_absolute_url }}">
+                                            <span class="panel-item-title">{{ article.title }}</span>
+                                            <span class="panel-item-date">{{ article.pub_date | date:"m-d" }}</span>
                                         </a>
                                     </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇希望学校举行第六届最美希望人评选活动启动仪式</span>
-                                            <span class="panel-item-date">12-17</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇希望学校弯腰行动从我做起</span>
-                                            <span class="panel-item-date">12-17</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇第一片区成功举行音乐走教活动</span>
-                                            <span class="panel-item-date">12-13</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">上屯小学轮课教学，提升你我</span>
-                                            <span class="panel-item-date">12-12</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇希望学校手指动起来课间更精彩</span>
-                                            <span class="panel-item-date">12-12</span>
-                                        </a>
-                                    </li>
+                                {% endfor %}
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><a href="#">政务公开<span class="panel-more float-right">更多</span></a></h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="panel-list">
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇：欢声笑语庆元旦 才艺大赛展风采</span>
-                                            <span class="panel-item-date">12-29</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇举行第二届小学教师综合素质大赛</span>
-                                            <span class="panel-item-date">11-30</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇：党建带岗建 带出好三风</span>
-                                            <span class="panel-item-date">11-26</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇:大赛点燃激情 赛场绽放青春</span>
-                                            <span class="panel-item-date">11-22</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇第二届幼儿教师健康领域综合素质大赛圆满举行</span>
-                                            <span class="panel-item-date">11-15</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇希望学校开展学会感恩与爱同行</span>
-                                            <span class="panel-item-date">11-21</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><a href="#">学科研究<span class="panel-more float-right">更多</span></a></h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="panel-list">
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">堡里小学：《冰灯》教学反思</span>
-                                            <span class="panel-item-date">12-19</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">麻庄小学 《乌鸦喝水》教学反思</span>
-                                            <span class="panel-item-date">12-18</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">班主任工作经验交流心得体会</span>
-                                            <span class="panel-item-date">12-18</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">上屯小学：《雪地里的小画家》教学反思</span>
-                                            <span class="panel-item-date">12-17</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">堡里小学：如何提高学生的学习兴趣</span>
-                                            <span class="panel-item-date">12-12</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">堡里小学：《9加几》教学反思</span>
-                                            <span class="panel-item-date">12-12</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><a href="#">政策法规<span class="panel-more float-right">更多</span></a></h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="panel-list">
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">三门峡市学校内部安全管理工作基本规范</span>
-                                            <span class="panel-item-date">11-5</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">灵宝市中小学幼儿园安全工作 “10查100看”</span>
-                                            <span class="panel-item-date">9-27</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">三门峡市教育系统安全稳定“50查200看”排查重点</span>
-                                            <span class="panel-item-date">9-27</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">灵宝市学校安全管理责任体系建设手册</span>
-                                            <span class="panel-item-date">9-22</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">灵宝市幼儿园管理基本规范(试行)</span>
-                                            <span class="panel-item-date">9-2</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">河南省城镇独生子女父母奖励扶助 制度政策解释及对象确认与退出程序</span>
-                                            <span class="panel-item-date">7-1</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><a href="#">教研教改<span class="panel-more float-right">更多</span></a></h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="panel-list">
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">堡里小学：《冰灯》教学反思</span>
-                                            <span class="panel-item-date">12-19</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">麻庄小学 《乌鸦喝水》教学反思</span>
-                                            <span class="panel-item-date">12-18</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">班主任工作经验交流心得体会</span>
-                                            <span class="panel-item-date">12-18</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">上屯小学：《雪地里的小画家》教学反思</span>
-                                            <span class="panel-item-date">12-17</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">堡里小学：如何提高学生的学习兴趣</span>
-                                            <span class="panel-item-date">12-12</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">堡里小学：《9加几》教学反思</span>
-                                            <span class="panel-item-date">12-12</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><a href="#">教育论文<span class="panel-more float-right">更多</span></a></h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="panel-list">
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">谈小学生创新精神的培养</span>
-                                            <span class="panel-item-date">6-13</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">堡里小学：我参与，我快乐</span>
-                                            <span class="panel-item-date">12-7</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">新课的语文教学</span>
-                                            <span class="panel-item-date">11-22</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">如何培养一年级学生的口算能力</span>
-                                            <span class="panel-item-date">11-15</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">在数学教学中如何培养学生的创新意识</span>
-                                            <span class="panel-item-date">11-7</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">浅谈如何提高学生的学习主动性</span>
-                                            <span class="panel-item-date">5-4</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="panel panel-notice">
+                {% query index_category_list weight=7 as index_categorys %}
+                {% for index_category in index_categorys %}
                     <div class="panel-heading">
-                        <h3 class="panel-title"><a href="#">网站公告<span class="panel-more float-right">更多</span></a></h3>
+                        <h3 class="panel-title"><a href="{{ index_category.get_absolute_url }}">{{ index_category.name }}<span class="panel-more float-right">更多</span></a></h3>
                     </div>
                     <div class="panel-body">
                         <ul class="panel-list">
+                        {% index_query nav_pages category_id=index_category.category_id as articles %}
+                        {% for article in articles %}
                             <li class="panel-notice-item">
                                 <div class="panel-notice-date">
-                                    <span class="panel-notice-date-m">11月</span>
-                                    <span class="panel-notice-date-d">26日</span>
+                                    <span class="panel-notice-date-m">{{ article.pub_date | date:"m" }}月</span>
+                                    <span class="panel-notice-date-d">{{ article.pub_date | date:"d" }}日</span>
                                 </div>
-                                <a href="#" class="panel-notice-title">第二十四期校长管理案例（2018年11月份）已在“学校风采”栏目发表，请各位校长下载学习。</a>
+                                <a href="{{ article.get_absolute_url }}" class="panel-notice-title">{{ article.title }}</a>
                             </li>
-                            <li class="panel-notice-item">
-                                <div class="panel-notice-date">
-                                    <span class="panel-notice-date-m">07月</span>
-                                    <span class="panel-notice-date-d">07日</span>
-                                </div>
-                                <a href="#" class="panel-notice-title">第二十三期校长管理案例（2018年6月份）已在“学校风采”栏目发表，请各位校长下载学习。</a>
-                            </li>
-                            <li class="panel-notice-item">
-                                <div class="panel-notice-date">
-                                    <span class="panel-notice-date-m">06月</span>
-                                    <span class="panel-notice-date-d">06日</span>
-                                </div>
-                                <a href="#" class="panel-notice-title">第二十二期校长管理案例（2018年5月份）已在“学校风采”栏目发表，请各位校长下载学习。</a>
-                            </li>
-                            <li class="panel-notice-item">
-                                <div class="panel-notice-date">
-                                    <span class="panel-notice-date-m">05月</span>
-                                    <span class="panel-notice-date-d">07日</span>
-                                </div>
-                                <a href="#" class="panel-notice-title">第二十一期校长管理案例（2018年4月份）已在“学校风采”栏目发表，请各位校长下载学习。</a>
-                            </li>
-                            <li class="panel-notice-item">
-                                <div class="panel-notice-date">
-                                    <span class="panel-notice-date-m">04月</span>
-                                    <span class="panel-notice-date-d">08日</span>
-                                </div>
-                                <a href="#" class="panel-notice-title">第二十期校长管理案例（2018年3月份）已在“学校风采”栏目发表，请各位校长下载学习。</a>
-                            </li>
-                            <li class="panel-notice-item">
-                                <div class="panel-notice-date">
-                                    <span class="panel-notice-date-m">01月</span>
-                                    <span class="panel-notice-date-d">04日</span>
-                                </div>
-                                <a href="#" class="panel-notice-title">第十九期校长管理案例（2017年12月份）已在“学校风采”栏目发表，请各位校长下载学习。</a>
-                            </li>
+                        {% endfor %}
                         </ul>
                     </div>
+                {% endfor %}
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel">
+                        {% query index_category_list weight=8 as index_categorys %}
+                        {% for index_category in index_categorys %}
                             <div class="panel-heading">
-                                <h3 class="panel-title"><a href="#">平安校园<span class="panel-more float-right">更多</span></a></h3>
+                                <h3 class="panel-title"><a href="{{ index_category.get_absolute_url }}">{{ index_category.name }}<span class="panel-more float-right">更多</span></a></h3>
                             </div>
                             <div class="panel-body">
                                 <ul class="panel-list">
+                                {% index_query nav_pages category_id=index_category.category_id as articles %}
+                                {% for article in articles %}
                                     <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇堡里小学举行防震安全疏散演练</span>
-                                            <span class="panel-item-date">12-12</span>
+                                        <a href="{{ article.get_absolute_url }}">
+                                            <span class="panel-item-title">{{ article.title }}</span>
+                                            <span class="panel-item-date">{{ article.pub_date | date:"m-d" }}</span>
                                         </a>
                                     </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">董社小学举行防震紧急疏散安全演练活动</span>
-                                            <span class="panel-item-date">12-10</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇麻庄小学举行紧急疏散演练</span>
-                                            <span class="panel-item-date">12-10</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">杜家小学举行防震疏散演练</span>
-                                            <span class="panel-item-date">12-6</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇实验幼儿园：冬季安全督查受肯定</span>
-                                            <span class="panel-item-date">12-6</span>
-                                        </a>
-                                    </li>
-                                    <li class="panel-item">
-                                        <a href="#">
-                                            <span class="panel-item-title">豫灵镇希望学校开展杜绝火患 保护家园主题活动</span>
-                                            <span class="panel-item-date">12-5</span>
-                                        </a>
-                                    </li>
+                                {% endfor %}
                                 </ul>
                             </div>
+                        {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="main-footer">
-        <p>灵宝市豫灵镇中心学校 © 版权所有 2007-2018</p>
-        <p>地址：河南省灵宝市豫灵镇亚武路 邮编：472533</p>
-    </footer>
+    {% include "footer.html" %}
     <!-- JavaScript -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'js/jquery.flexslider.js' %}"></script>
@@ -691,5 +189,4 @@
     <script src="{% static 'js/init.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
-
 </html>

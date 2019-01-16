@@ -40,7 +40,20 @@ class BaseModel(models.Model):
     @abstractmethod
     def get_absolute_url(self):
         pass
-    
+
+
+class Index(BaseModel):
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name="板块名")
+    weight = models.PositiveIntegerField(unique=True, verbose_name="序号(数字越小越靠前)")
+
+    class Meta:
+        verbose_name = "首页板块"
+        verbose_name_plural = verbose_name
+        ordering = ['weight']
+        get_latest_by = 'id'
+
+    def __str__(self):
+        return self.category.name
 
 
 class Article(BaseModel):

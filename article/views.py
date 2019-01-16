@@ -15,12 +15,13 @@ from django.views.generic.detail import DetailView
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 
-from .models import Article, Category, Index
+from .models import Article, Category, Index, Banner
 
 
 class IndexView(ListView):
     model = Index
     template_name = 'index.html'
+    extra_context = {'banner_list': Banner.objects.all()}
     context_object_name = 'category_list'
 
 

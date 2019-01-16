@@ -26,76 +26,27 @@
                 <div class="main-slide-btn main-slide-left"><i class="fa fa-chevron-left"></i></div>
                 <div class="main-slide-btn main-slide-right"><i class="fa fa-chevron-right"></i></span></div>
                 <ul class="main-slide-list">
+                {% for banner in banner_list %}
                     <li class="main-slide-item">
-                        <a href="#">
+                        <a href="{{ banner.article.get_absolute_url }}">
                             <img class="cover-img" src="{% static 'img/test0.jpg'%}">
                         </a>
                     </li>
-                    <li class="main-slide-item">
-                        <a href="#">
-                            <img class="cover-img" src="{% static 'img/test1.jpg'%}">
-                        </a>
-                    </li>
-                    <li class="main-slide-item">
-                        <a href="#">
-                            <img class="cover-img" src="{% static 'img/test2.jpg'%}">
-                        </a>
-                    </li>
-                    <li class="main-slide-item">
-                        <a href="#">
-                            <img class="cover-img" src="{% static 'img/test3.jpg'%}">
-                        </a>
-                    </li>
-                    <li class="main-slide-item">
-                        <a href="#">
-                            <img class="cover-img" src="{% static 'img/test4.jpg'%}">
-                        </a>
-                    </li>
+                {% endfor %}
                 </ul>
             </div>
             <div class="main-slide-excerpt">
                 <ol class="main-slide-excerpt-list">
+                {% for banner in banner_list %}
                     <li class="main-slide-excerpt-item">
                         <img class="cover-img blur" src="{% static 'img/test0.jpg'%}">
                         <div class="main-slide-excerpt-item-box">
-                            <h3 class="main-slide-title"><a href="#">豫灵镇：欢声笑语庆元旦 才艺大赛展风采</a></h3>
-                            <p class="main-slide-text">为热烈庆祝元旦佳节，
-                                12月28日，豫灵镇中心校工会举行庆元旦教工才艺大赛活动，通过作品陈列静态展示和节目表演动态展示两种方式，检阅近年来教育教学发展成果和师生昂扬向上的精神风貌。身心两健展时代风采，德艺双馨做魅力教师。本次才艺展示活动以“全员性、主题性...</p>
+                            <h3 class="main-slide-title"><a href="{{ banner.article.get_absolute_url }}">{{ banner.article.title | truncatechinese:'19' }}</a></h3>
+                            <p class="main-slide-text">{{ banner.article.content | removehtmltags | slice:'150' | safe }}</p>
                         </div>
-                        <a class="main-slide-excerpt-more btn" href="#">了解更多</a>
+                        <a class="main-slide-excerpt-more btn" href="{{ banner.article.get_absolute_url }}">了解更多</a>
                     </li>
-                    <li class="main-slide-excerpt-item">
-                        <img class="cover-img blur" src="{% static 'img/test1.jpg'%}">
-                        <div class="main-slide-excerpt-item-box">
-                            <h3 class="main-slide-title"><a href="#">豫灵镇:大赛点燃激情 赛场绽放青春</a></h3>
-                            <p class="main-slide-text">为提高幼儿教师的职业道德修养、教育教学能力和专业技能水平，努力打造一支德艺双馨的青年教师队伍，11月21日、22日，豫灵镇第二届幼儿园教师社会领域综合素质大赛在阳光幼儿园举行。比赛的内容有教学设计、课件制作、课堂教学展示、教育教学答辩、粉笔字展示、才艺...</p>
-                        </div>
-                        <a class="main-slide-excerpt-more btn" href="#">了解更多</a>
-                    </li>
-                    <li class="main-slide-excerpt-item">
-                        <img class="cover-img blur" src="{% static 'img/test2.jpg'%}">
-                        <div class="main-slide-excerpt-item-box">
-                            <h3 class="main-slide-title"><a href="#">豫灵镇第二届幼儿教师健康领域综合素质大...</a></h3>
-                            <p class="main-slide-text">为深化教师队伍建设年活动，深入推动三项提升工程，激励广大幼儿教师重视和坚持基本功训练，落实以游戏为基本活动的教育原则，着力提高豫灵镇幼儿教师综合素质，11月14日、11月15日，豫灵镇第二届幼儿园教师健康领域综合素质大赛在四知幼儿园圆满举行。比赛设有教育教学...</p>
-                        </div>
-                        <a class="main-slide-excerpt-more btn" href="#">了解更多</a>
-                    </li>
-                    <li class="main-slide-excerpt-item">
-                        <img class="cover-img blur" src="{% static 'img/test3.jpg'%}">
-                        <div class="main-slide-excerpt-item-box">
-                            <h3 class="main-slide-title"><a href="#">豫灵镇扎实开展校车安全整治活动</a></h3>
-                            <p class="main-slide-text">为全面加强幼儿园校车管理，确保冬季交通安全，11月13日，豫灵镇中心校、交警二中队密切配合成立校车督查组，深入各幼儿园扎实开展校车安全专项整治行动。每到一所幼儿园，检查组成员仔细查看校车车况、设施配备、驾驶证件、校车责任书签订等各类档案，询问校车接送路线...</p>
-                        </div>
-                        <a class="main-slide-excerpt-more btn" href="#">了解更多</a>
-                    </li>
-                    <li class="main-slide-excerpt-item">
-                        <img class="cover-img blur" src="{% static 'img/test4.jpg'%}">
-                        <div class="main-slide-excerpt-item-box">
-                            <h3 class="main-slide-title"><a href="#">豫灵镇中小学积极开展消防安全教育和疏散...</a></h3>
-                            <p class="main-slide-text">为全面加强学校冬季安全工作，防范火灾事故的发生，11月8日，豫灵镇中心校组织各中小学、幼儿园积极开展消防安全教育和消防疏散演练。各校充分利用消防安全主题班会、黑板报、电子屏等多种方式，广泛宣传消防安全知识和逃生自救知识；同时，积极开展消防安全疏散演练和应...</p>
-                        </div>
-                        <a class="main-slide-excerpt-more btn" href="#">了解更多</a>
-                    </li>
+                {% endfor %}
                 </ol>
             </div>
         </div>

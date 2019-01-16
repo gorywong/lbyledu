@@ -1,3 +1,4 @@
+{% load article_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -106,7 +107,7 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><a href="{{ category.get_absolute_url }}">学校新闻<span class="panel-more float-right">更多</span></a></h3>
+                                <h3 class="panel-title"><a href="{{ index_category.category.get_absolute_url }}">{{ index_category.category.name }}<span class="panel-more float-right">更多</span></a></h3>
                             </div>
                             {% index_query nav_pages category_id=index_category.category_id as articles %}
                             {% if not articles %}
@@ -120,6 +121,10 @@
                                             <span class="panel-item-title">{{ article.title }}</span>
                                             <span class="panel-item-date">{{ article.pub_date | date:"m-d" }}</span>
                                         </a>
+                                    </li>
+                                {% empty %}
+                                    <li class="panel-item">
+                                        <span class="panel-item-title">暂无文章</span>
                                     </li>
                                 {% endfor %}
                                 </ul>
@@ -135,7 +140,7 @@
                 {% query index_category_list weight=7 as index_categorys %}
                 {% for index_category in index_categorys %}
                     <div class="panel-heading">
-                        <h3 class="panel-title"><a href="{{ index_category.get_absolute_url }}">{{ index_category.name }}<span class="panel-more float-right">更多</span></a></h3>
+                        <h3 class="panel-title"><a href="{{ index_category.category.get_absolute_url }}">{{ index_category.category.name }}<span class="panel-more float-right">更多</span></a></h3>
                     </div>
                     <div class="panel-body">
                         <ul class="panel-list">
@@ -159,7 +164,7 @@
                         {% query index_category_list weight=8 as index_categorys %}
                         {% for index_category in index_categorys %}
                             <div class="panel-heading">
-                                <h3 class="panel-title"><a href="{{ index_category.get_absolute_url }}">{{ index_category.name }}<span class="panel-more float-right">更多</span></a></h3>
+                                <h3 class="panel-title"><a href="{{ index_category.category.get_absolute_url }}">{{ index_category.category.name }}<span class="panel-more float-right">更多</span></a></h3>
                             </div>
                             <div class="panel-body">
                                 <ul class="panel-list">
@@ -170,6 +175,10 @@
                                             <span class="panel-item-title">{{ article.title }}</span>
                                             <span class="panel-item-date">{{ article.pub_date | date:"m-d" }}</span>
                                         </a>
+                                    </li>
+                                {% empty %}
+                                    <li class="panel-item">
+                                        <span class="panel-item-title">暂无文章</span>
                                     </li>
                                 {% endfor %}
                                 </ul>

@@ -25,7 +25,7 @@
             </div>
             <div id="main-header-nav" class="collapse navbar-collapse">
                 <ul class="main-nav nav navbar-nav nav-justified">
-                    <li class="nav-item"><a href="">首页</a></li>
+                    <li class="nav-item"><a {% ifequal request.path "/" %}name="active" class="active"{% endifequal %} href="{% url 'index' %}">首页</a></li>
                     <li class="nav-item"><a href="javascript:void(0)">学校概况</a></li>
                     {% query nav_category_list parent_category=None as root_categorys %}
                     {% for node in root_categorys %}

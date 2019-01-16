@@ -35,7 +35,7 @@
                     <i class="fa fa-align-right"></i> {% for child in child_category %}{{ child.name }}{% endfor %}
                 </span>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="">首页</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">首页</a></li>
                     <li class="breadcrumb-item"><a href="{{ parent_category.get_absolute_url }}">{% for parent in parent_category %}{{ parent.name }}{% endfor %}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{% for child in child_category %}{{ child.name }}{% endfor %}</li>
                 </ol>

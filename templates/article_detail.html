@@ -26,7 +26,7 @@
                     <i class="fa fa-align-right"></i> {{ article.category.name }}
                 </span>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="">首页</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">首页</a></li>
                     <li class="breadcrumb-item"><a href="{{ parent_category.get_absolute_url }}">{{ article.category.parent_category }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ article.category.name }}</li>
                 </ol>

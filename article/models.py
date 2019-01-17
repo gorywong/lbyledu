@@ -98,10 +98,10 @@ class Article(BaseModel):
         return reverse('admin:%s_%s_change' % info, args=(self.pk))
 
     def next_article(self):
-        return Article.objects.filter(id__gt=self.id, category=self.category, status='p', has_check=True).order_by('id').first()
+        return Article.objects.filter(pub_date__lt=self.pub_date, category=self.category, status='p', has_check=True).order_by('-pub_date').first()
 
     def prev_article(self):
-        return Article.objects.filter(id__lt=self.id, category=self.category, status='p', has_check=True).order_by('-id').first()
+        return Article.objects.filter(pub_date__gt=self.pub_date, category=self.category, status='p', has_check=True).order_by('pub_date').first()
 
 
 class Category(BaseModel):

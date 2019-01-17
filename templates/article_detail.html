@@ -27,7 +27,7 @@
                 </span>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'index' %}">首页</a></li>
-                    <li class="breadcrumb-item"><a href="{{ parent_category.get_absolute_url }}">{{ article.category.parent_category }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ article.category.parent_category.get_absolute_url }}">{{ article.category.parent_category }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ article.category.name }}</li>
                 </ol>
             </h3>
@@ -47,9 +47,9 @@
         <div>
             <nav aria-label="page navigation" class="pager">
                 <ul class="pagination">
-                    <li class="previous"><a class="page-item" href="#"><i class="fa fa-angle-double-left"></i>
+                    <li class="previous"><a class="page-item" href="{{ prev_article.get_absolute_url }}"><i class="fa fa-angle-double-left"></i>
                             上一篇</a></li>
-                    <li class="next"><a class="page-item" href="#">下一篇 <i class="fa fa-angle-double-right"></i></a></li>
+                    <li class="next"><a class="page-item" href="{{ next_article.get_absolute_url }}">下一篇 <i class="fa fa-angle-double-right"></i></a></li>
                 </ul>
             </nav>
         </div>

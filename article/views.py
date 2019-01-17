@@ -47,3 +47,9 @@ class ArticleDetailView(DetailView):
         obj.viewed()
         self.object = obj
         return obj
+
+    def get_context_data(self, **kwargs):
+        articleid = int(self.kwargs[self.pk_url_kwarg])
+        kwargs['next_article'] = self.object.next_article
+        kwargs['prev_article'] = self.object.prev_article
+        return super(ArticleDetailView, self).get_context_data(**kwargs)

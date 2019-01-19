@@ -26,17 +26,37 @@
             <div id="main-header-nav" class="collapse navbar-collapse">
                 <ul class="main-nav nav navbar-nav nav-justified">
                     <li class="nav-item"><a {% ifequal request.path "/" %}name="active" class="active"{% endifequal %} href="{% url 'index' %}">首页</a></li>
-                    <li class="nav-item"><a href="javascript:void(0)">学校概况</a></li>
+                    <li class="nav-item" data-toggle="tab" data-target="#main-nav-0"><a href="{% url 'article:developing' %}">学校概况</a></li>
                     {% query nav_category_list parent_category=None as root_categorys %}
                     {% for node in root_categorys %}
                         <li class="nav-item" data-toggle="tab" data-target="#main-nav-{{ forloop.counter }}"><a {% ifequal current_parent_id node.id %}name="active" class="active"{% endifequal %} href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
                     {% endfor %}
-                    <li class="nav-item"><a href="javascript:void(0)">网上办公</a></li>
+                    <li class="nav-item"><a href="{% url 'article:developing' %}">网上办公</a></li>
                 </ul>
 
                 <ul class="main-nav-more">
                     {% for node in root_categorys %}
                     {% query nav_category_list parent_category=node as child_categorys %}
+                        <li class="fade" id="main-nav-0">
+                            <div class="row">
+                                <div class="col-sm-5 main-nav-item">
+                                    <ul class="main-nav-list">
+                                        <li><a href="javascript:void(0)">学校概况</a></li>
+                                        <li><a href="javascript:void(0)">领导介绍</a></li>
+                                        <li><a href="javascript:void(0)">下属机构</a></li>
+                                        <li><a href="javascript:void(0)">学校荣誉</a></li>
+                                        <li><a href="javascript:void(0)">教育设施</a></li>
+                                        <li><a href="javascript:void(0)">教研成果</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3 main-nav-item">
+                                    <span class="main-nav-words">{{ SITE_NAME }}</span>
+                                </div>
+                                <div class="col-sm-4 main-nav-item">
+                                    <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
+                                </div>
+                            </div>
+                        </li>
                         {% if child_categorys %}
                         <li class="fade" id="main-nav-{{ forloop.counter }}">
                             <div class="row">

@@ -10,6 +10,7 @@
 @Description:
 """
 from django.shortcuts import render, get_object_or_404
+from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.conf import settings
@@ -49,7 +50,10 @@ class ArticleDetailView(DetailView):
         return obj
 
     def get_context_data(self, **kwargs):
-        articleid = int(self.kwargs[self.pk_url_kwarg])
         kwargs['next_article'] = self.object.next_article
         kwargs['prev_article'] = self.object.prev_article
         return super(ArticleDetailView, self).get_context_data(**kwargs)
+
+
+class DevelopView(TemplateView):
+    template_name = 'developing.html'

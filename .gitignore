@@ -67,4 +67,4 @@ migrations/
 collectedstatic/
 spiders/
 media/
-settings_production.py
+uwsgi.ini

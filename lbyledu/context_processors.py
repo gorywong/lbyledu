@@ -16,6 +16,7 @@ from article.models import Article, Category, Index
 
 def seo_processor(request):
     site_settings = get_site_setting()
+    page = request.GET.get('page')
     if request.path.split('/')[1] == 'category':
         current_parent_id = int(request.path.split('/')[2])
         current_child_id = int(request.path.split('/')[3])
@@ -33,6 +34,7 @@ def seo_processor(request):
         'nav_category_list': Category.objects.all(),
         'index_category_list': Index.objects.all(),
         'nav_pages': Article.objects.filter(has_check=True, status='p').order_by('-pub_date'),
+        'PAGE': page,
         'BEIAN_CODE': site_settings.beiancode,
         'ANALYTICS_CODE': site_settings.analyticscode,
         "BEIAN_CODE_GONGAN": site_settings.gongan_beiancode,

@@ -110,7 +110,33 @@ $(function(){
     var $caption = $(".content-page p");
     $caption.each(function(){
         if ($(this).css("text-align") == "center") {
-            $(this).addClass("caption")
+            $(this).addClass("caption");
         }
       });
+});
+
+// article_index.html
+$(function(){
+    $page_numbers = $(".page-item");
+
+    function GetQueryString(name) {
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    if (window.location.pathname.search("category")) {
+        var $page = parseInt(GetQueryString("page"));
+
+        if ($page) {
+            $.each($page_numbers, function(i, val) {
+                if (parseInt(val.textContent) == $page) {
+                    val.className += " active";
+                    console.log(val.className);
+                }
+            });
+        } else {
+            $page_numbers[2].className += " active";
+        }
+    }
 });

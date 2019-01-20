@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册 - 灵宝市豫灵镇中心学校</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{% static 'css/login.css '%}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="bg"></div>
+        <div class="login-card">
+            <div class="login-logo-card">
+                <img src="{% static 'img/logo.png '%}" class="login-logo">
+            </div>
+            <div class="login-form-card">
+                <div class="login-form">
+                    <h1>豫灵镇中心学校</h1>
+                    <h3>欢迎注册</h3>
+                    <form action="/">
+                        <input name="username" class="user" type="text" placeholder="请输入用户名">
+                        <input name="password" class="pwd" type="password" placeholder="请输入密码">
+                        <input name="password-determine" class="pwd" type="password" placeholder="请确认密码">
+                        <button type="submit" class="login-btn">注册</button>
+                    </form>
+                    <div class="login-links">
+                        <a href="{% url 'login' %}">已有账号，点此登陆</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+</body>
+
+</html>

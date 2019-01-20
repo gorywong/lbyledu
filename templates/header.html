@@ -11,7 +11,7 @@
             </div>
             <div class="main-wordmark">
                 <h1>灵宝市豫灵镇中心学校</h1>
-                <h4>Lingbao Yuling Center School</h4>
+                <h4>Lingbao Yuling Central School</h4>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
                     {% for node in root_categorys %}
                         <li class="nav-item" data-toggle="tab" data-target="#main-nav-{{ forloop.counter }}"><a {% ifequal current_parent_id node.id %}name="active" class="active"{% endifequal %} href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
                     {% endfor %}
-                    <li class="nav-item"><a href="{% url 'article:developing' %}">网上办公</a></li>
+                    <li class="nav-item"><a href="{% url 'login' %}">网上办公</a></li>
                 </ul>
 
                 <ul class="main-nav-more">

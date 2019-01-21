@@ -16,6 +16,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import never_cache
+from django.contrib import auth
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.http import is_safe_url
@@ -43,6 +44,16 @@ class LoginView(FormView):
 
         return super(LoginView, self).get_context_data(**kwargs)
 
+    def form_valid(self, form):
+        form = AuthenticationForm(data=self.request.POST, request=self.request)
+
+        if form.is_valid():
+            redirect_to = self.request.GET.get(self.redirect_field_name)
+            auth.login(self.request, form.get_user())
+            return super(LoginView, self).form_valid(form)
+        else:
+            return self.render_to_response({'form': form})
+
     def get_success_url(self):
         redirect_to = self.request.POST.get(self.redirect_field_name)
         if not is_safe_url(url=redirect_to, allowed_hosts=[self.request.get_host()]):
@@ -52,6 +63,10 @@ class LoginView(FormView):
 
 class LogoutView(RedirectView):
     url = "/login/"
+
+    @method_decorator(never_cache)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LogoutView, self).dispatch(request, *args, **kwargs)
 
 
 class RegisterView(FormView):

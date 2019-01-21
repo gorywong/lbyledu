@@ -23,9 +23,11 @@
                     <h1><a href="{% url 'index' %}">豫灵镇中心学校</a></h1>
                     <h3>欢迎注册</h3>
                     <form action="/">
-                        <input name="username" class="user" type="text" placeholder="请输入用户名">
-                        <input name="password" class="pwd" type="password" placeholder="请输入密码">
-                        <input name="password-determine" class="pwd" type="password" placeholder="请确认密码">
+                        {{ form.none_field_errors }}
+                        {% for field in form %}
+                        {{ field }}
+                        {{ field.errors }}
+                        {% endfor %}
                         <button type="submit" class="login-btn">注册</button>
                     </form>
                     <div class="login-links">

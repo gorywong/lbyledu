@@ -22,10 +22,14 @@
                 <div class="login-form">
                     <h1><a href="{% url 'index' %}">豫灵镇中心学校</a></h1>
                     <h3>欢迎登陆</h3>
-                    <form action="/admin/" method="POST">
+                    <form action="{% url 'users:login' %}" method="POST">
                     {% csrf_token %}
-                        <input name="username" class="user" type="text" placeholder="请输入用户名">
-                        <input name="password" class="pwd" type="password" placeholder="请输入密码">
+                        {{ form.none_field_errors }}
+                        {% for field in form %}
+                        {{ field }}
+                        {{ field.errors }}
+                        {% endfor %}
+                        <input type="hidden" name="next" value="{{ redirect_to }}">
                         <button type="submit" class="login-btn">登陆</button>
                     </form>
                     <div class="login-links">

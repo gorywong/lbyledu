@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic.base import TemplateView
 from lbyledu.admin import admin_site
 from article.views import IndexView
 
@@ -27,7 +26,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name="index"),
     path('', include('organization.urls', namespace="organization")),
     path('', include('article.urls'), name="article"),
-    path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
-    path('register/', TemplateView.as_view(template_name='register.html'), name='register'),
+    path('', include('users.urls'), name="users"),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

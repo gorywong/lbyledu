@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'organization',
     'ckeditor',
     'ckeditor_uploader',
+    'captcha',
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"

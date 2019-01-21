@@ -21,7 +21,7 @@
     -webkit-transform: translateX(-50%) translateY(-50%);
     text-align: center;
     color: #FFF;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-image: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5));
     width: 60vw;
     padding: 50px 15px;
     border-radius: 5px;

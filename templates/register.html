@@ -16,11 +16,11 @@
         <div class="bg"></div>
         <div class="login-card">
             <div class="login-logo-card">
-                <img src="{% static 'img/logo.png'%}" class="login-logo">
+                <a href="{% url 'index' %}"><img src="{% static 'img/logo.png'%}" class="login-logo"></a>
             </div>
             <div class="login-form-card">
                 <div class="login-form">
-                    <h1>豫灵镇中心学校</h1>
+                    <h1><a href="{% url 'index' %}">豫灵镇中心学校</a></h1>
                     <h3>欢迎注册</h3>
                     <form action="/">
                         <input name="username" class="user" type="text" placeholder="请输入用户名">
@@ -29,7 +29,7 @@
                         <button type="submit" class="login-btn">注册</button>
                     </form>
                     <div class="login-links">
-                        <a href="{% url 'login' %}">已有账号，点此登陆</a>
+                        <a href="{% url 'users:login' %}">已有账号，点此登陆</a>
                     </div>
                 </div>
             </div>

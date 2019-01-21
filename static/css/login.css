@@ -143,3 +143,7 @@
     text-decoration: none;
     color: #3498DB;
 }
+
+.login-form h1 a {
+    color: #3498DB;
+}

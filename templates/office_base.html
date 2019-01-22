@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block head_title %}{% endblock head_title %}</title>
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    {% block css %}{% endblock css %}
+</head>
+
+<body>
+
+    {% include "header.html" %}
+
+    {% include "toolbar.html" %}
+
+    <div class="main-content container">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="main-content container">
+                <div class="row row-offcanvas row-offcanvas-left">
+                    <div class="col-sm-4 col-md-3 sidebar-offcanvas main-content-sidebar" id="sidebar">
+                        <ul class="sidebar-list-group">
+                            <li><a href="javascript:void(0)" class="sidebar-list-item top">网上办公</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item active">网上办公首页</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">个人资料</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">修改密码</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">审核新用户</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">发表文章</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">审核文章</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">文章管理</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-8 col-md-9 main-content-body">
+                        <div class="panel">
+                            <div class="main-list-body panel-body">
+                                <div class="user-profile">
+                                    <div class="user-profile-title">
+                                        <span class="user-profile-username">灾拐</span>
+                                        <span class="user-profile-position">教师</span>
+                                        <span class="user-profile-gender"><i class="fa fa-mars"></i></span>
+                                    </div>
+                                    <div class="user-profile-intro">
+                                        <span class="user-profile-intro-head">所属单位</span>
+                                        <span class="user-profile-intro-content">豫灵镇中心学校</span>
+                                        <br>
+                                        <span class="user-profile-intro-head">级别</span>
+                                        <span class="user-profile-intro-content">中心学校工作人员</span>
+                                    </div>
+                                    <button type="button" class="modify-user-profile-btn"><a href="javascript:void(0)">修改个人资料</a></button>
+                                </div>
+                                <div class="office-tags">
+                                    <div class="office-tags-head">
+                                        <ul class="nav nav-pills office-tags-tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="javascript:void(0)">公文签收</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="javascript:void(0)">内部短信</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="javascript:void(0)">通讯录</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div class="tab-content office-tags-content">
+                                        <div class="tab-pane fade show active">
+                                            <button type="button" class="publish-document-btn"><a href="javascript:void(0)">发布公文</a></button>
+                                            ...
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="list-group">
+                                    <h5>网站公告</h5>
+                                    <li class="list-group-item"><a href="javascript:void(0)">
+                                            <span class="list-group-item-title">第二十五期校长管理案例（2018年12月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
+                                            <span class="list-group-item-date"> 2019-01-02</span>
+                                        </a></li>
+                                </ul>
+                                <ul class="list-group">
+                                    <h5>公文签收</h5>
+                                    <li class="list-group-item"><a href="javascript:void(0)">
+                                            <span class="list-group-item-title">关于做好社会主义核心价值观暨教育教学成果宣传工作的通知 </span>
+                                            <span class="list-group-item-date"> 2019-01-22</span>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+
+    <!-- JavaScript -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block js %}{% endblock js %}
+</body>
+
+</html>

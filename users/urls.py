@@ -10,11 +10,13 @@
 @Description:
 """
 from django.urls import path, include
-from .views import LoginView, RegisterView
+from .views import LoginView, RegisterView, LogoutView
+from .forms import LoginForm
 
 app_name = 'users'
 
 urlpatterns = [
-    path('login/', LoginView.as_view(), name="login"),
+    path('login/', LoginView.as_view(), name="login", kwargs={'authentication_form': LoginForm}),
     path('register/', RegisterView.as_view(), name="register"),
+    path('logout/', LogoutView.as_view(), name="logout")
 ]

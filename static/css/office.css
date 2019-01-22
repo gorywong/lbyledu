@@ -1,0 +1,183 @@
+.main-list-body {
+    margin-top: -1px;
+}
+
+.main-content-body .panel-body:before {
+    content: "";
+    width: 100%;
+    height: 200px;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.main-list-body ul.list-group {
+    padding: 15px 25px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.main-list-body ul.list-group h5 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.main-list-body ul.list-group li.list-group-item {
+    border-radius: 0;
+    border: none;
+    padding: 12px 0;
+    font-size: 14px;
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.main-list-body ul.list-group li.list-group-item>a {
+    color: #34495e;
+}
+
+.main-list-body ul.list-group li.list-group-item:hover {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    z-index: 2;
+}
+
+.main-list-body ul.list-group li.list-group-item>a:hover {
+    color: #3498DB;
+}
+
+.main-list-body .list-group-item-title {
+    display: inline-block;
+    float: left;
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 16px;
+}
+
+.main-list-body .list-group-item-date {
+    position: relative;
+    top: 0;
+    right: 2px;
+    float: right;
+    font-size: 12px;
+    color: #95A5A6;
+}
+
+.user-profile,
+.office-tags {
+    position: relative;
+    padding: 15px 25px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.user-profile-username {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.user-profile-position,
+.user-profile-gender {
+    font-size: 18px;
+    margin-left: 12px;
+}
+
+.user-profile-intro-head {
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.8;
+    font-size: 14px;
+    margin-right: 30px;
+    min-width: 4em;
+}
+
+.user-profile-intro-content {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.modify-user-profile-btn {
+    position: absolute;
+    right: 25px;
+    bottom: 15px;
+    background: transparent;
+    color: #3498DB;
+    border: solid 1px #3498DB;
+    border-radius: 3px;
+    text-align: center;
+    padding: 0;
+}
+
+.modify-user-profile-btn a,
+.publish-document-btn a,
+.create-message-btn a {
+    display: inline-block;
+    color: #3498DB;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 34px;
+}
+
+.modify-user-profile-btn a:hover,
+.publish-document-btn a:hover,
+.create-message-btn a:hover {
+    color: #3498DB;
+    background-color: rgba(41, 128, 185, 0.05)
+}
+
+.office-tags-tabs .nav-item {
+    padding: 0 20px;
+}
+
+.office-tags-tabs .nav-item:first-child {
+    padding-left: 0;
+}
+
+.office-tags-tabs .nav-link {
+    padding-left: 0;
+    padding-right: 0;
+    color: #34495E;
+    font-size: 16px;
+    transition: none;
+}
+
+.office-tags-tabs .nav-link:hover {
+    color: #34495E;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #34495E;
+    background: transparent;
+    font-weight: 600;
+    border:none;
+    border-radius: 0;
+    border-bottom: 3px solid #3498DB;
+}
+
+.office-tags hr {
+    margin-top: 0;
+}
+
+.publish-document-btn,
+.create-message-btn {
+    position: absolute;
+    top: 18.5px;
+    right: 25px;
+    background: transparent;
+    color: #3498DB;
+    border: solid 1px #3498DB;
+    border-radius: 3px;
+    text-align: center;
+    padding: 0;
+}
+
+#contact table {
+    font-size: 14px;
+}

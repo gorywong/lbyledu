@@ -147,3 +147,20 @@
 .login-form h1 a {
     color: #3498DB;
 }
+
+#id_captcha_1 {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    margin-bottom: 18px;
+    vertical-align:middle;
+}
+
+.captcha {
+    display: inline-block;
+    border: solid 1px #000;
+    height: 30px;
+    margin: 0;
+    margin-bottom: 18px;
+    vertical-align:middle;
+}

@@ -22,7 +22,8 @@
                 <div class="login-form">
                     <h1><a href="{% url 'index' %}">豫灵镇中心学校</a></h1>
                     <h3>欢迎注册</h3>
-                    <form action="/">
+                    <form action="{% url 'users:register' %}" method="POST">
+                    {% csrf_token %}
                         {{ form.none_field_errors }}
                         {% for field in form %}
                         {{ field }}

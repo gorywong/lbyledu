@@ -48,7 +48,6 @@ class LoginView(FormView):
         form = AuthenticationForm(data=self.request.POST, request=self.request)
 
         if form.is_valid():
-            redirect_to = self.request.GET.get(self.redirect_field_name)
             auth.login(self.request, form.get_user())
             return super(LoginView, self).form_valid(form)
         else:

@@ -37,6 +37,7 @@ class UserProfile(AbstractUser):
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name="电话")
     create_time = models.DateTimeField(default=now, verbose_name="创建时间")
     last_mod_time = models.DateTimeField(default=now, verbose_name="修改时间")
+    is_active = models.BooleanField(default=False, verbose_name="是否激活")
     first_name = None
     last_name = None
 

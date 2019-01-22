@@ -19,7 +19,7 @@ class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
 
-        self.fields['username'].widget = widgets.TextInput(attrs={'placeholder': '请输入用户名'})
+        self.fields['username'].widget = widgets.TextInput(attrs={'placeholder': '请输入用户名或邮箱地址'})
         self.fields['password'].widget = widgets.PasswordInput(attrs={'placeholder': '请输入密码'})
 
 class RegisterForm(UserCreationForm):

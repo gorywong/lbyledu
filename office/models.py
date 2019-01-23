@@ -21,7 +21,7 @@ from django.utils.timezone import now
 from ckeditor_uploader.fields import RichTextUploadingField
 
 from lbyledu.utils import cache_decorator, cache
-from users.models import UserGroup
+from users.models import UserGroup, UserProfile
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +44,21 @@ class BaseModel(models.Model):
 
 class Document(BaseModel):
     title = models.CharField(max_length=200, unique=True, verbose_name="标题")
-    receiver = models.ForeignKey(UserGroup, on_delete=models.CASCADE, verbose_name="收件用户组")
-    # 编号
-    # 是否已读
+    author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="发布人")
+    content = RichTextUploadingField(verbose_name="正文")
+    receiver = models.ManyToManyField(UserProfile, related_name="receivers", verbose_name="收件人")
+    receiver_group = models.ForeignKey(UserGroup, on_delete=models.CASCADE, verbose_name="收件用户组")
+    checked_receiver = models.ManyToManyField(UserProfile, related_name="checked_receivers", verbose_name="已签收的用户")
+    number = models.IntegerField(max_length=8, unique=True, verbose_name="编号")
+
+    class Meta:
+        verbose_name = "公文"
+        verbose_name_plural = verbose_name
+        ordering = ['-pub_date']
+        get_latest_by = 'id'
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("office:document_detail", kwargs={"number": self.number})

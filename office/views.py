@@ -11,7 +11,21 @@
 """
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 # Create your views here.
 class OfficeView(TemplateView):
     template_name = 'office_index.html'
+
+
+class DocumentDetailView(DetailView):
+    pass
+
+
+class DocumentListView(ListView):
+    pass
+
+
+class UserManageView(ListView):
+    pass

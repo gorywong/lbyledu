@@ -10,10 +10,13 @@
 @Description:
 """
 from django.urls import path, include
-from .views import OfficeView
+from .views import OfficeView, DocumentDetailView, DocumentListView, UserManageView
 from django.contrib.auth.decorators import login_required
 
 app_name = 'office'
 urlpatterns = [
-    path('office/', login_required()(OfficeView.as_view()), name='index'),
+    path('', login_required()(OfficeView.as_view()), name='index'),
+    path('document/', login_required()(DocumentListView.as_view()), name='document'),
+    path('document/<int:number>', login_required()(DocumentDetailView.as_view()), name='document_detail'),
+    path('usermanagement/', login_required()(UserManageView.as_view()), name='user_manage')
 ]

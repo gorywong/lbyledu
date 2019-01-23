@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('organization.urls', namespace="organization")),
     path('', include('article.urls', namespace="article")),
     path('', include('users.urls', namespace="users")),
-    path('', include('office.urls', namespace="office")),
+    path('office/', include('office.urls', namespace="office")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

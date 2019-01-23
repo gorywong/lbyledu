@@ -12,6 +12,7 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import RedirectView, FormView
+from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect

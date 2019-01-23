@@ -3,10 +3,10 @@
 
 """
 @Author: gorywong
-@Date: 2019-01-23 14:42:49
+@Date: 2019-01-23 14:43:06
 @Software: Visual Studio Code
 @Last Modified by: gorywong
-@Last Modified time: 2019-01-23 14:42:49
+@Last Modified time: 2019-01-23 14:43:06
 @Description:
 """
 from django.apps import AppConfig
@@ -14,4 +14,4 @@ from django.apps import AppConfig
 
 class UsersConfig(AppConfig):
     name = 'users'
-    verbose_name = "用户管理"
+    verbose_name = "网上办公"

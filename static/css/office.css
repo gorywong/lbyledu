@@ -12,14 +12,6 @@
     z-index: -1;
 }
 
-.main-list-body ul.list-group {
-    padding: 15px 25px;
-    margin-bottom: 10px;
-    background-color: #FFF;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-
-}
-
 .main-list-body ul.list-group h5 {
     font-size: 18px;
     font-weight: 400;
@@ -69,8 +61,7 @@
     color: #95A5A6;
 }
 
-.user-profile,
-.office-tags {
+.content-card {
     position: relative;
     padding: 15px 25px;
     margin-bottom: 10px;
@@ -152,17 +143,23 @@
     color: #34495E;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.office-tags-tabs .nav-link.active,
+.office-tags-tabs .show>.nav-link {
     color: #34495E;
     background: transparent;
     font-weight: 600;
-    border:none;
+    border: none;
     border-radius: 0;
     border-bottom: 3px solid #3498DB;
 }
 
+.nav-tabs .nav-item .nav-link {
+    padding: 5px 10px;
+}
+
 .office-tags hr {
     margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .publish-document-btn,
@@ -178,6 +175,25 @@
     padding: 0;
 }
 
-#contact table {
+.tab-pane .list-group .list-group-item:first-child {
+    border-top: none;
+}
+
+.tab-pane .list-group .list-group-item:first-child:hover {
+    border-top: none;
+}
+
+.list-group .more {
+    display: block;
+    text-align: right;
+    padding-top: 12px;
+}
+
+.list-group .more a {
     font-size: 14px;
+    color: #95A5A6;
+}
+
+.list-group .more a:hover {
+    color: #3498DB;
 }

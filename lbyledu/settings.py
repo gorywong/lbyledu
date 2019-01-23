@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'users',
     'article',
     'organization',
+    'office',
     'ckeditor',
     'ckeditor_uploader',
     'captcha',

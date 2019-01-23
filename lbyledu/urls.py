@@ -25,8 +25,9 @@ urlpatterns = [
     path('admin/', admin_site.urls),
     path('', IndexView.as_view(), name="index"),
     path('', include('organization.urls', namespace="organization")),
-    path('', include('article.urls'), name="article"),
-    path('', include('users.urls'), name="users"),
+    path('', include('article.urls', namespace="article")),
+    path('', include('users.urls', namespace="users")),
+    path('', include('office.urls', namespace="office")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

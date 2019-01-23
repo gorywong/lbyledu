@@ -1,389 +1,43 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>网上办公 - 豫灵镇中心学校</title>
-
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../static/css/main.css" rel="stylesheet">
-    <link href="../static/css/office.css" rel="stylesheet">
-</head>
-
-<body>
-
-    <header class="main-header">
-        <div class="main-header-wordmark container-fluid">
-            <div class="main-header-bar">
-                <div class="main-search">
-                    <form action="">
-                        <input type="text" class="main-search-input form-control" placeholder="搜索">
-                        <button type="submit" class="main-search-submit btn"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-                <div class="main-wordmark">
-                    <h1>灵宝市豫灵镇中心学校</h1>
-                    <h4>Lingbao Yuling Central School</h4>
-                </div>
-            </div>
-        </div>
-        <div class="main-header-navbar container-fluid">
-            <nav class="main-header-bar navbar navbar-expand-sm">
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-header-nav"
-                        aria-controls="main-header-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="navbar-toggler-icon fa fa-bars"></i>
-                    </button>
-                </div>
-                <div id="main-header-nav" class="collapse navbar-collapse">
-                    <ul class="main-nav nav navbar-nav nav-justified">
-                        <li class="nav-item"><a href="/">首页</a></li>
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-0"><a href="/developing/">学校概况</a></li>
-
-
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-1"><a href="/category/2/9">教育信息</a></li>
-
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-2"><a href="/category/3/14">学科研究</a></li>
-
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-3"><a href="/category/4/20">资源中心</a></li>
-
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-4"><a href="/category/6/25">政策法规</a></li>
-
-                        <li class="nav-item" data-toggle="tab" data-target="#main-nav-5"><a href="/category/7/28">学校风采</a></li>
-
-                        <li class="nav-item"><a name="active" class="active" href="/login/">网上办公</a></li>
-                    </ul>
-
-                    <ul class="main-nav-more">
-                        <li class="fade" id="main-nav-0">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-                                        <li><a href="javascript:void(0)">学校概况</a></li>
-                                        <li><a href="javascript:void(0)">领导介绍</a></li>
-                                        <li><a href="javascript:void(0)">下属机构</a></li>
-                                        <li><a href="javascript:void(0)">学校荣誉</a></li>
-                                        <li><a href="javascript:void(0)">教育设施</a></li>
-                                        <li><a href="javascript:void(0)">教研成果</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="/static/img/2jiao.jpg">
-                                </div>
-                            </div>
-                        </li>
-
-
-
-                        <li class="fade" id="main-nav-1">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-
-                                        <li><a href="/category/2/8">最新公告</a></li>
-
-                                        <li><a href="/category/2/9">教育动态</a></li>
-
-                                        <li><a href="/category/2/10">本地信息</a></li>
-
-                                        <li><a href="/category/2/11">行事历</a></li>
-
-                                        <li><a href="/category/2/12">政务公开</a></li>
-
-                                        <li><a href="/category/2/13">平安校园</a></li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="/static/img/2jiao.jpg">
-                                </div>
-                            </div>
-                        </li>
-
-
-
-
-                        <li class="fade" id="main-nav-2">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-
-                                        <li><a href="/category/3/14">教研教改</a></li>
-
-                                        <li><a href="/category/3/15">教研论文</a></li>
-
-                                        <li><a href="/category/3/16">学教指导</a></li>
-
-                                        <li><a href="/category/3/17">教学反思</a></li>
-
-                                        <li><a href="/category/3/18">美文欣赏</a></li>
-
-                                        <li><a href="/category/3/19">生活感悟</a></li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="/static/img/2jiao.jpg">
-                                </div>
-                            </div>
-                        </li>
-
-
-
-
-                        <li class="fade" id="main-nav-3">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-
-                                        <li><a href="/category/4/20">教育论文</a></li>
-
-                                        <li><a href="/category/4/21">教学教案</a></li>
-
-                                        <li><a href="/category/4/22">精选课件</a></li>
-
-                                        <li><a href="/category/4/23">教育软件</a></li>
-
-                                        <li><a href="/category/4/24">优秀作文</a></li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="/static/img/2jiao.jpg">
-                                </div>
-                            </div>
-                        </li>
-
-
-
-
-                        <li class="fade" id="main-nav-4">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-
-                                        <li><a href="/category/6/25">国家法律</a></li>
-
-                                        <li><a href="/category/6/26">地方政策</a></li>
-
-                                        <li><a href="/category/6/27">本地文件</a></li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="/static/img/2jiao.jpg">
-                                </div>
-                            </div>
-                        </li>
-
-
-
-
-                        <li class="fade" id="main-nav-5">
-                            <div class="row">
-                                <div class="col-sm-5 main-nav-item">
-                                    <ul class="main-nav-list">
-
-                                        <li><a href="/category/7/28">学校新闻</a></li>
-
-                                        <li><a href="/category/7/29">校长风采</a></li>
-
-                                        <li><a href="/category/7/30">名师风采</a></li>
-
-                                        <li><a href="/category/7/31">雏鹰风采</a></li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-sm-3 main-nav-item">
-                                    <span class="main-nav-words">灵宝市豫灵镇中心学校</span>
-                                </div>
-                                <div class="col-sm-4 main-nav-item">
-                                    <img class="main-nav-img" src="/static/img/2jiao.jpg">
-                                </div>
-                            </div>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <div id="toolbar">
-        <div class="contactus">
-            <a>
-                联系我们
-                <div class="contactus-card">
-                    <div class="contact-method">
-                        <p>地址：河南省灵宝市豫灵镇亚武路</p>
-                        <p>邮编：472533</p>
-                        <p>电话：0398-2525678</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="returntop">
-            <a><i class="fa fa-arrow-up"></i></a>
-        </div>
-    </div>
-
-    <div class="main-content container">
-        <div class="row row-offcanvas row-offcanvas-left">
-            <div class="main-content container">
-                <div class="row row-offcanvas row-offcanvas-left">
-                    <div class="col-sm-4 col-md-3 sidebar-offcanvas main-content-sidebar" id="sidebar">
-                        <ul class="sidebar-list-group">
-                            <li><a href="javascript:void(0)" class="sidebar-list-item top">网上办公</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item active">网上办公首页</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">个人资料</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">修改密码</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">审核新用户</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">发表文章</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">审核文章</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">文章管理</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-8 col-md-9 main-content-body">
-                        <div class="panel">
-                            <div class="main-list-body panel-body">
-                                <div class="user-profile">
-                                    <div class="user-profile-title">
-                                        <span class="user-profile-username">灾拐</span>
-                                        <span class="user-profile-position">教师</span>
-                                        <span class="user-profile-gender"><i class="fa fa-mars"></i></span>
-                                    </div>
-                                    <div class="user-profile-intro">
-                                        <span class="user-profile-intro-head">所属单位</span>
-                                        <span class="user-profile-intro-content">豫灵镇中心学校</span>
-                                        <br>
-                                        <span class="user-profile-intro-head">级别</span>
-                                        <span class="user-profile-intro-content">中心学校工作人员</span>
-                                    </div>
-                                    <button type="button" class="modify-user-profile-btn"><a href="javascript:void(0)">修改个人资料</a></button>
-                                </div>
-                                <div class="office-tags">
-                                    <div class="office-tags-head">
-                                        <ul class="nav nav-pills office-tags-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="document-tab" data-toggle="tab" href="#document"
-                                                    role="tab" aria-controls="document" aria-selected="true">公文签收</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="short-messages-tab" data-toggle="tab" href="#short-messages"
-                                                    role="tab" aria-controls="short-messages" aria-selected="false">内部短信</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
-                                                    role="tab" aria-controls="contact" aria-selected="false">通讯录</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <hr>
-                                    <div class="tab-content office-tags-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="document" role="tabpanel"
-                                            aria-labelledby="document-tab">
-                                            <button type="button" class="publish-document-btn"><a href="javascript:void(0)">发布公文</a></button>
-                                        </div>
-                                        <div class="tab-pane fade" id="short-messages" role="tabpanel" aria-labelledby="short-messages-tab">
-                                            <button type="button" class="create-message-btn"><a href="javascript:void(0)">新建短信</a></button>
-                                            暂无短信
-                                        </div>
-                                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                            <table class="table table-hover row mx-0">
-                                                <thead class="w-100">
-                                                    <tr class="row mx-0">
-                                                        <th scope="col" class="col-1">#</th>
-                                                        <th scope="col" class="col-4">用户名(姓名)</th>
-                                                        <th scope="col" class="col-3">单位</th>
-                                                        <th scope="col" class="col-3">办公电话</th>
-                                                        <th scope="col" class="col-1"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="w-100">
-                                                    <tr class="row mx-0">
-                                                        <th scope="row" class="col-1">1</th>
-                                                        <td class="col-4">administrator(管理员)</td>
-                                                        <td class="col-3">豫灵镇中心学校</td>
-                                                        <td class="col-3">0398-88888831</td>
-                                                        <td class="col-1"><a href="javascript:void(0)">更多</a></td>
-                                                    </tr>
-                                                    <tr class="row mx-0">
-                                                        <th scope="row" class="col-1">2</th>
-                                                        <td class="col-4">admin(董雁)</td>
-                                                        <td class="col-3">豫灵镇中心学校</td>
-                                                        <td class="col-3">0398-2525678</td>
-                                                        <td class="col-1"><a href="javascript:void(0)">更多</a></td>
-                                                    </tr>
-                                                    <tr class="row mx-0">
-                                                        <th scope="row" class="col-1">3</th>
-                                                        <td class="col-4">蓓蕾艺术幼儿园(公用账号)</td>
-                                                        <td class="col-3">蓓蕾艺术幼儿园</td>
-                                                        <td class="col-3"></td>
-                                                        <td class="col-1"><a href="javascript:void(0)">更多</a></td>
-                                                    </tr>
-                                                    <tr class="row mx-0">
-                                                        <th scope="row" class="col-1">4</th>
-                                                        <td class="col-4">中心幼儿园(公用账号)</td>
-                                                        <td class="col-3">中心幼儿园</td>
-                                                        <td class="col-3">0398-6889197</td>
-                                                        <td class="col-1"><a href="javascript:void(0)">更多</a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="list-group">
-                                    <h5>网站公告</h5>
-                                    <li class="list-group-item"><a href="javascript:void(0)">
-                                            <span class="list-group-item-title">第二十五期校长管理案例（2018年12月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                                            <span class="list-group-item-date"> 2019-01-02</span>
-                                        </a></li>
-                                </ul>
-                                <ul class="list-group">
-                                    <h5>公文签收</h5>
-                                    <li class="list-group-item"><a href="javascript:void(0)">
-                                            <span class="list-group-item-title">关于做好社会主义核心价值观暨教育教学成果宣传工作的通知 </span>
-                                            <span class="list-group-item-date"> 2019-01-22</span>
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="main-footer">
-        <p>灵宝市豫灵镇中心学校 © 版权所有 2007-2018</p>
-        <p>地址：河南省灵宝市豫灵镇亚武路 邮编：472533</p>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <script src="../static/js/main.js"></script>
-</body>
-
-</html>
+<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <table class="table table-hover row mx-0">
+        <thead class="w-100">
+            <tr class="row mx-0">
+                <th scope="col" class="col-1">#</th>
+                <th scope="col" class="col-4">用户名(姓名)</th>
+                <th scope="col" class="col-3">单位</th>
+                <th scope="col" class="col-3">办公电话</th>
+                <th scope="col" class="col-1"></th>
+            </tr>
+        </thead>
+        <tbody class="w-100">
+            <tr class="row mx-0">
+                <th scope="row" class="col-1">1</th>
+                <td class="col-4">administrator(管理员)</td>
+                <td class="col-3">豫灵镇中心学校</td>
+                <td class="col-3">0398-88888831</td>
+                <td class="col-1"><a href="javascript:void(0)">更多</a></td>
+            </tr>
+            <tr class="row mx-0">
+                <th scope="row" class="col-1">2</th>
+                <td class="col-4">admin(董雁)</td>
+                <td class="col-3">豫灵镇中心学校</td>
+                <td class="col-3">0398-2525678</td>
+                <td class="col-1"><a href="javascript:void(0)">更多</a></td>
+            </tr>
+            <tr class="row mx-0">
+                <th scope="row" class="col-1">3</th>
+                <td class="col-4">蓓蕾艺术幼儿园(公用账号)</td>
+                <td class="col-3">蓓蕾艺术幼儿园</td>
+                <td class="col-3"></td>
+                <td class="col-1"><a href="javascript:void(0)">更多</a></td>
+            </tr>
+            <tr class="row mx-0">
+                <th scope="row" class="col-1">4</th>
+                <td class="col-4">中心幼儿园(公用账号)</td>
+                <td class="col-3">中心幼儿园</td>
+                <td class="col-3">0398-6889197</td>
+                <td class="col-1"><a href="javascript:void(0)">更多</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -10,7 +10,7 @@
 @Description:
 """
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.urls import reverse
 from django.utils.timezone import now
 
@@ -47,6 +47,21 @@ class UserProfile(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class UserGroup(models.Model):
+    id = models.AutoField(primary_key=True)
+    created_time = models.DateTimeField(default=now, verbose_name="创建时间")
+    last_mod_time = models.DateTimeField(default=now, verbose_name="修改时间")
+    name = models.CharField(max_length=100, verbose_name="用户组名称", default="")
+    users = models.ManyToManyField(UserProfile, related_name='usergroups', verbose_name="用户")
+
+    class Meta:
+        verbose_name = "用户组"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class EmailVerifyRecord(models.Model):

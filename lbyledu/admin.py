@@ -39,5 +39,6 @@ admin_site.register(Organization, OrganizationAdmin)
 admin_site.register(Leader, LeaderAdmin)
 
 admin_site.register(UserProfile, UserProfileAdmin)
+admin_site.register(UserGroup, UserGroupAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)

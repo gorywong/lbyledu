@@ -30,13 +30,13 @@
         <div class="main-list-body panel-body">
             <div class="content-card user-profile">
                 <div class="user-profile-title">
-                    <span class="user-profile-username">王国瑞</span>
-                    <span class="user-profile-position">教师</span>
-                    <span class="user-profile-gender"><i class="fa fa-mars"></i></span>
+                    <span class="user-profile-username">{{ request.user.realname }}</span>
+                    <span class="user-profile-position">{{ request.user.get_position_display  }}</span>
+                    <span class="user-profile-gender">{% ifequal request.user.gender "male" %}<i class="fa fa-mars"></i>{% else %}<i class="fa fa-venus"></i>{% endifequal %}</span>
                 </div>
                 <div class="user-profile-intro">
                     <span class="user-profile-intro-head">所属单位</span>
-                    <span class="user-profile-intro-content">豫灵镇中心学校</span>
+                    <span class="user-profile-intro-content">{{ request.user.organization.name }}</span>
                     <br>
                     <span class="user-profile-intro-head">级别</span>
                     <span class="user-profile-intro-content">中心学校工作人员</span>

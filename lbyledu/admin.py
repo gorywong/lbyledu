@@ -15,6 +15,7 @@ from lbyledu.logentryadmin import LogEntryAdmin
 from article.admin import *
 from organization.admin import *
 from users.admin import *
+from office.admin import *
 
 class MyAdminSite(admin.AdminSite):
     site_header = '豫灵镇中心学校网站后台管理系统'
@@ -42,3 +43,5 @@ admin_site.register(UserProfile, UserProfileAdmin)
 admin_site.register(UserGroup, UserGroupAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)
+
+admin_site.register(Document, DocumentAdmin)

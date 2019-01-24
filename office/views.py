@@ -16,7 +16,7 @@ from django.views.generic.list import ListView
 
 # Create your views here.
 class OfficeView(TemplateView):
-    template_name = 'office_index.html'
+    template_name = 'office/office_index.html'
 
 
 class DocumentDetailView(DetailView):

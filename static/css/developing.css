@@ -9,7 +9,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url('https://open.saintic.com/api/bingPic/');
+    background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url('https://api.berryapi.net/bing/random/');
     z-index: -1;
 }
 

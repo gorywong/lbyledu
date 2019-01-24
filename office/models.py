@@ -49,12 +49,12 @@ class Document(BaseModel):
     receiver = models.ManyToManyField(UserProfile, related_name="receivers", verbose_name="收件人")
     receiver_group = models.ForeignKey(UserGroup, on_delete=models.CASCADE, verbose_name="收件用户组")
     checked_receiver = models.ManyToManyField(UserProfile, related_name="checked_receivers", verbose_name="已签收的用户")
-    number = models.IntegerField(max_length=8, unique=True, verbose_name="编号")
+    number = models.IntegerField(unique=True, verbose_name="编号")
 
     class Meta:
         verbose_name = "公文"
         verbose_name_plural = verbose_name
-        ordering = ['-pub_date']
+        ordering = ['-created_time']
         get_latest_by = 'id'
 
     def __str__(self):

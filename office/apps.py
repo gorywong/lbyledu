@@ -12,6 +12,6 @@
 from django.apps import AppConfig
 
 
-class UsersConfig(AppConfig):
-    name = 'users'
-    verbose_name = "网上办公"
+class OfficeConfig(AppConfig):
+    name = 'office'
+    verbose_name = " 网上办公"

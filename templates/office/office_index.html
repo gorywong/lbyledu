@@ -116,46 +116,12 @@
                         </div>
                         <div class="tab-pane fade" id="all-documents" role="tabpanel" aria-labelledby="all-documents-tab">
                             <ul class="list-group">
+                                {% for document in documents %}
                                 <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于青少年帮扶工作安排的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-23</span>
+                                        <span class="list-group-item-title">{{ document.title }}</span>
+                                        <span class="list-group-item-date">{{ document.created_time | date:"Y-m-d" }}</span>
                                     </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于召开 2019 年教育工作会议的通知 </span>
-                                        <span class="list-group-item-date"> 2019-01-23</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于做好社会主义核心价值观暨教育教学成果宣传工作的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-22</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于在“打违治乱”专项整治行动中开展自查工作的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-22</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于开展2019年第一季度廉政谈话的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-21</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于组织开展中小学2019年“平安 寒假”安全教育专项活动的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-21</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于组织开展完成一次中小学生寒假 消防作业活动的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-21</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于做好春节期间美化亮化及“移风易俗树新风 文明扶志助脱贫”工作的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-21</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">豫灵镇小学阶段2018—2019学年度上期期末 质量检测评卷安排</span>
-                                        <span class="list-group-item-date"> 2019-01-20</span>
-                                    </a></li>
-                                <li class="list-group-item"><a href="javascript:void(0)">
-                                        <span class="list-group-item-title">关于转发《灵宝市教育系统开展安全风险隐患双重预防体系建设实施方案》的通知</span>
-                                        <span class="list-group-item-date"> 2019-01-17</span>
-                                    </a></li>
+                                {% endfor %}
                                 <span class="more"><a href="javascript:void(0)">全部公文 <i class="fa fa-angle-right"></i></a></span>
                             </ul>
                         </div>
@@ -164,39 +130,13 @@
             </div>
             <ul class="content-card list-group">
                 <h5>网站公告</h5>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">第二十五期校长管理案例（2018年12月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                        <span class="list-group-item-date"> 2019-01-02</span>
+                {% for notice in notices %}
+                <li class="list-group-item"><a href="{{ notice.get_absolute_url }}">
+                        <span class="list-group-item-title">{{ notice.title }}</span>
+                        <span class="list-group-item-date">{{ notice.pub_date | date:"Y-m-d" }}</span>
                     </a></li>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">第二十四期校长管理案例（2018年11月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                        <span class="list-group-item-date"> 2018-11-26</span>
-                    </a></li>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">第二十三期校长管理案例（2018年6月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                        <span class="list-group-item-date"> 2018-07-07</span>
-                    </a></li>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">第二十二期校长管理案例（2018年5月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                        <span class="list-group-item-date"> 2018-06-06</span>
-                    </a></li>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">第二十一期校长管理案例（2018年4月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                        <span class="list-group-item-date"> 2018-05-07</span>
-                    </a></li>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">第二十期校长管理案例（2018年3月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                        <span class="list-group-item-date"> 2018-04-08</span>
-                    </a></li>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">第十九期校长管理案例（2017年12月份）已在“学校风采”栏目发表，请各位校长下载学习。</span>
-                        <span class="list-group-item-date"> 2018-01-04</span>
-                    </a></li>
-                <li class="list-group-item"><a href="javascript:void(0)">
-                        <span class="list-group-item-title">“2017国培计划”12月份外出学习人员学习心得体会已在最新公告栏目分享，请各校教师下载学习。</span>
-                        <span class="list-group-item-date"> 2017-12-15</span>
-                    </a></li>
-                <span class="more"><a href="javascript:void(0)">更多公告 <i class="fa fa-angle-right"></i></a></span>
+                {% endfor %}
+                <span class="more"><a href="{{ notice_cate.get_absolute_url }}">更多公告 <i class="fa fa-angle-right"></i></a></span>
             </ul>
         </div>
     </div>

@@ -10,7 +10,8 @@
 @Description:
 """
 from django.urls import path, include
-from .views import LoginView, RegisterView, LogoutView
+from django.contrib.auth.decorators import login_required
+from .views import LoginView, RegisterView, LogoutView, PasswordChangeView
 from .forms import LoginForm
 
 app_name = 'users'
@@ -18,5 +19,6 @@ app_name = 'users'
 urlpatterns = [
     path('login/', LoginView.as_view(), name="login", kwargs={'authentication_form': LoginForm}),
     path('register/', RegisterView.as_view(), name="register"),
-    path('logout/', LogoutView.as_view(), name="logout")
+    path('logout/', login_required()(LogoutView.as_view()), name="logout"),
+    path('passwordchange/', login_required()(PasswordChangeView.as_view()), name="password_change")
 ]

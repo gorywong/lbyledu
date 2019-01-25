@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>网上办公 - 豫灵镇中心学校</title>
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/office.css' %}" rel="stylesheet">
+    {% block css %}{% endblock css %}
+</head>
+
+<body>
+
+    {% include "header.html" %}
+
+    {% include "toolbar.html" %}
+
+    <div class="main-content container">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="main-content container">
+                <div class="row row-offcanvas row-offcanvas-left">
+                    <div class="col-sm-4 col-md-3 sidebar-offcanvas main-content-sidebar" id="sidebar">
+                        <ul class="sidebar-list-group">
+                            <li><a href="javascript:void(0)" class="sidebar-list-item top">网上办公</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item{% ifequal current_route 'office' %} active{% endifequal %}">网上办公首页</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item{% ifequal current_route 'office' %} document{% endifequal %}">公文签收</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">文章管理</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">审核新用户</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item">通讯录</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-8 col-md-9 main-content-body">
+                        <div class="panel">
+                            <div class="main-list-body panel-body">
+                                {% block main %}
+                                
+                                {% endblock main %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+
+    <!-- JavaScript -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block js %}{% endblock js %}
+</body>
+
+</html>

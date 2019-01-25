@@ -57,9 +57,11 @@ docs/_build/
 # PyBuilder
 target/
 
-
 # VS Code
 .vscode/
+
+# PyCharm
+.idea/
 
 collect_static/
 migrations/

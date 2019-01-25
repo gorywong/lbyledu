@@ -1,0 +1,88 @@
+{% extends "office/office_base.html" %}
+{% load static %}
+{% load article_tags %}
+
+{% block css %}
+<link href="{% static 'css/office.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block main %}
+<div class="content-card user-profile">
+    <div class="user-profile-title">
+        <span class="user-profile-username">{{ request.user.realname }}</span>
+        <span class="user-profile-position">{{ request.user.get_position_display  }}</span>
+        <span class="user-profile-gender">{% ifequal request.user.gender "male" %}<i class="fa fa-mars"></i>{% else %}<i class="fa fa-venus"></i>{% endifequal %}</span>
+    </div>
+    <div class="user-profile-intro">
+        <span class="user-profile-intro-head">所属单位</span>
+        <span class="user-profile-intro-content">{{ request.user.organization.name }}</span>
+        <br>
+        <span class="user-profile-intro-head">级别</span>
+        <span class="user-profile-intro-content">中心学校工作人员</span>
+    </div>
+    <button type="button" class="modify-user-profile-btn"><a href="javascript:void(0)">修改个人资料</a></button>
+</div>
+<div class="content-card office-tags">
+    <div class="office-tags-head">
+        <ul class="nav office-tags-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="javascript:void(0)">公文签收</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">内部短信</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">通讯录</a>
+            </li>
+        </ul>
+    </div>
+    <hr>
+    <div class="tab-pane office-tags-content">
+        <button type="button" class="publish-document-btn"><a href="javascript:void(0)">发布公文</a></button>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="not-signed-documents-tab" data-toggle="tab" href="#not-signed-documents" role="tab"
+                    aria-controls="not-signed-documents" aria-selected="true">未签收公文</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="all-documents-tab" data-toggle="tab" href="#all-documents" role="tab"
+                    aria-controls="all-documents" aria-selected="false">全部公文</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="not-signed-documents" role="tabpanel" aria-labelledby="not-signed-documents-tab">
+                <ul class="list-group">
+                {% for document in not_signed_document_list %}
+                    <li class="list-group-item"><a href="javascript:void(0)">
+                            <span class="list-group-item-title">{{ document.title }}</span>
+                            <span class="list-group-item-date">{{ document.created_time | date:"Y-m-d" }}</span>
+                        </a></li>
+                {% endfor %}
+                    <span class="more"><a href="javascript:void(0)">全部公文 <i class="fa fa-angle-right"></i></a></span>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="all-documents" role="tabpanel" aria-labelledby="all-documents-tab">
+                <ul class="list-group">
+                    {% for document in documents %}
+                    <li class="list-group-item"><a href="javascript:void(0)">
+                            <span class="list-group-item-title">{{ document.title }}</span>
+                            <span class="list-group-item-date">{{ document.created_time | date:"Y-m-d" }}</span>
+                        </a></li>
+                    {% endfor %}
+                    <span class="more"><a href="javascript:void(0)">全部公文 <i class="fa fa-angle-right"></i></a></span>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="content-card list-group">
+    <h5>网站公告</h5>
+    {% for notice in notices %}
+    <li class="list-group-item"><a href="{{ notice.get_absolute_url }}">
+            <span class="list-group-item-title">{{ notice.title }}</span>
+            <span class="list-group-item-date">{{ notice.pub_date | date:"Y-m-d" }}</span>
+        </a></li>
+    {% endfor %}
+    <span class="more"><a href="{{ notice_cate.get_absolute_url }}">更多公告 <i class="fa fa-angle-right"></i></a></span>
+</ul>
+{% endblock main %}

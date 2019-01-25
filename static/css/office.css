@@ -12,9 +12,9 @@
     z-index: -1;
 }
 
-.main-list-body ul.list-group h5 {
-    font-size: 18px;
-    font-weight: 400;
+.content-card h5 {
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .main-list-body ul.list-group li.list-group-item {
@@ -151,10 +151,6 @@
     border: none;
     border-radius: 0;
     border-bottom: 3px solid #3498DB;
-}
-
-.nav-tabs .nav-item .nav-link {
-    padding: 5px 10px;
 }
 
 .office-tags hr {

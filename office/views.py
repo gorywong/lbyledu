@@ -21,9 +21,24 @@ class OfficeView(ListView):
     model = Document
     template_name = 'office/office_index.html'
     queryset = Document.objects.all().order_by('-created_time')[:10]
+    context_object_name = 'documents'
     extra_context = {'notices': Article.objects.filter(category__name='最新公告', has_check=True, status='p').order_by('-pub_date')[:8],
                      'notice_cate': Category.objects.get(name='最新公告')}
-    context_object_name = 'documents'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(OfficeView, self).get_context_data(**kwargs)
+        documents = Document.objects.all().order_by('-created_time')
+        not_signed_documents = []
+        count = 0
+        for document in documents:
+            if self.request.user not in document.checked_receiver.all():
+                not_signed_documents.append(document)
+                count += 1
+            if count == 10:
+                break
+
+        context['not_signed_document_list'] = not_signed_documents
+        return context
 
 
 class DocumentDetailView(DetailView):

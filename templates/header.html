@@ -44,7 +44,7 @@
                     {% for node in root_categorys %}
                         <li class="nav-item" data-toggle="tab" data-target="#main-nav-{{ forloop.counter }}"><a {% ifequal current_parent_id node.id %}name="active" class="active"{% endifequal %} href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
                     {% endfor %}
-                    <li class="nav-item"><a {% if "/office/" in request.path %}name="active" class="active"{% endif %} href="{% url 'office:index' %}">网上办公</a></li>
+                    <li class="nav-item"{% if request.user.is_authenticated %} data-toggle="tab" data-target="#main-nav-99"{% endif %}><a {% if "/office/" in request.path %}name="active" class="active"{% endif %} href="{% url 'office:index' %}">网上办公</a></li>
                 </ul>
 
                 <ul class="main-nav-more">
@@ -90,6 +90,27 @@
                         </li>
                         {% endif %}
                     {% endfor %}
+                    {% if request.user.is_authenticated %}
+                    <li class="fade" id="main-nav-99">
+                        <div class="row">
+                            <div class="col-sm-5 main-nav-item">
+                                <ul class="main-nav-list">
+                                    <li><a href="{% url 'office:index' %}">办公首页</a></li>
+                                    <li><a href="{% url 'office:document' %}">公文签收</a></li>
+                                    <li><a href="javascript:void(0)">文章管理</a></li>
+                                    <li><a href="javascript:void(0)">审核用户</a></li>
+                                    <li><a href="javascript:void(0)">通讯录</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3 main-nav-item">
+                                <span class="main-nav-words">{{ SITE_NAME }}</span>
+                            </div>
+                            <div class="col-sm-4 main-nav-item">
+                                <img class="main-nav-img" src="{% static 'img/2jiao.jpg' %}">
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

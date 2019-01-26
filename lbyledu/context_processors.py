@@ -11,6 +11,7 @@
 """
 from django.conf import settings
 from lbyledu.utils import get_site_setting
+from django.utils.timezone import now
 from article.models import Article, Category, Index
 
 
@@ -39,6 +40,7 @@ def seo_processor(request):
         'index_category_list': Index.objects.all(),
         'nav_pages': Article.objects.filter(has_check=True, status='p').order_by('-pub_date'),
         'current_route': current_route,
+        'date': now,
         'PAGE': page,
         'BEIAN_CODE': site_settings.beiancode,
         'ANALYTICS_CODE': site_settings.analyticscode,

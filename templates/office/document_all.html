@@ -4,13 +4,15 @@
 
 {% block main %}
 <div class="content-card office-tags">
-    <button type="button" class="publish-document-btn"><a href="javascript:void(0)">发布公文</a></button>
     <ul class="nav nav-pills">
         <li class="nav-item">
             <a href="{% url 'office:document' %}" class="nav-link">未签收公文</a>
         </li>
         <li class="nav-item">
             <a href="{% url 'office:document_all' %}" class="nav-link active">全部公文</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'office:document_publish' %}" class="nav-link">发布公文</a>
         </li>
     </ul>
     <ul class="list-group">

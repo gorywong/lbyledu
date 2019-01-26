@@ -43,10 +43,10 @@ class BaseModel(models.Model):
 
 
 class Document(BaseModel):
-    title = models.CharField(max_length=200, unique=True, verbose_name="标题")
+    title = models.CharField(max_length=200, verbose_name="标题")
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="发布人")
     content = RichTextUploadingField(verbose_name="正文")
-    receiver = models.ManyToManyField(UserProfile, related_name="receivers", verbose_name="收件人")
+    receiver = models.ManyToManyField(UserProfile, blank=True, related_name="documents", verbose_name="收件人")
     receiver_group = models.ForeignKey(UserGroup, on_delete=models.CASCADE, verbose_name="收件用户组")
     checked_receiver = models.ManyToManyField(UserProfile, blank=True, related_name="checked_documents", verbose_name="已签收的用户")
     number = models.IntegerField(unique=True, verbose_name="编号")

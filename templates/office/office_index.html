@@ -4,7 +4,7 @@
 {% block main %}
 <div class="content-card user-profile">
     <div class="user-profile-title">
-        <span class="user-profile-username">{{ request.user.realname }}</span>
+        <span class="user-profile-username">{% if request.user.realname %}{{ request.user.realname }}{% else %}{{ request.user.username }}{% endif %}</span>
         <span class="user-profile-position">{{ request.user.get_position_display  }}</span>
         <span class="user-profile-gender">{% ifequal request.user.gender "male" %}<i class="fa fa-mars"></i>{% else %}<i class="fa fa-venus"></i>{% endifequal %}</span>
     </div>

@@ -222,3 +222,13 @@
     border-color: #ECF0F1;
     z-index: 3;
 }
+
+.btn-primary {
+    background-color: #3498DB;
+    border-color: #3498DB;
+}
+
+.btn-primary:hover {
+    background-color: #2C81BA;
+    border-color: #2C81BA;
+}

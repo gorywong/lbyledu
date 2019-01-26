@@ -68,6 +68,10 @@ class LogoutView(RedirectView):
     def dispatch(self, request, *args, **kwargs):
         return super(LogoutView, self).dispatch(request, *args, **kwargs)
 
+    def get(self, request, *args, **kwargs):
+        auth.logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)
+
 
 class RegisterView(FormView):
     template_name = 'register.html'
@@ -82,4 +86,8 @@ class RegisterView(FormView):
 
     
 class PasswordChangeView(View):
+    pass
+
+
+class UserProfileView(View):
     pass

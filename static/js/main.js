@@ -113,6 +113,15 @@ $(function(){
             $(this).addClass("caption");
         }
       });
+
+    // 用户资料
+    var $user = $('.main-user>span>a')
+    $user.on("mouseenter", function(){
+        $('.main-user-menu').addClass("show");
+    });
+    $('.main-user').on("mouseleave", function(){
+        $('.main-user-menu').removeClass("show");
+    });
 });
 
 // article_index.html

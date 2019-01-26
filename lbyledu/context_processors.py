@@ -17,8 +17,11 @@ from article.models import Article, Category, Index
 def seo_processor(request):
     site_settings = get_site_setting()
     page = request.GET.get('page')
-    current_route = request.path.split('/')[1]
-    if current_route == 'category':
+    if len(request.path.split('/')) > 2:
+        current_route = request.path.split('/')[2]
+    else:
+        current_route = None
+    if request.path.split('/')[1] == 'category':
         current_parent_id = int(request.path.split('/')[2])
         current_child_id = int(request.path.split('/')[3])
     else:

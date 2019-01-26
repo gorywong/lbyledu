@@ -61,6 +61,64 @@ li {
     border-top: 1px solid #288ec7;
 }
 
+/* main-header:user */
+.main-head-top {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 15px;
+    font-size: 1em;
+}
+
+.return-old-version a {
+    color: #FFF;
+}
+
+.main-user {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.main-user>span>a {
+    color: #FFF;
+    border-bottom: 1px dotted #FFF;
+    padding-bottom: 1px;
+}
+
+.main-user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 5rem;
+    padding: .5rem 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    background-color: #FFF;
+    border: none;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.main-user-menu.show{
+    display: block;
+}
+
+.main-user-item {
+    display: block;
+    width: 100%;
+    padding: 2px 15px;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    white-space: nowrap;
+    background-color: transparent;
+}
+
 /* main-header:search */
 .main-search {
     width: 125px;

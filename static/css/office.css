@@ -123,15 +123,15 @@
     background-color: rgba(41, 128, 185, 0.05)
 }
 
-.office-tags-tabs .nav-item {
+.nav-pills .nav-item {
     padding: 0 20px;
 }
 
-.office-tags-tabs .nav-item:first-child {
+.nav-pills .nav-item:first-child {
     padding-left: 0;
 }
 
-.office-tags-tabs .nav-link {
+.nav-pills .nav-link {
     padding-left: 0;
     padding-right: 0;
     color: #34495E;
@@ -139,12 +139,12 @@
     transition: none;
 }
 
-.office-tags-tabs .nav-link:hover {
+.nav-pills .nav-link:hover {
     color: #34495E;
 }
 
-.office-tags-tabs .nav-link.active,
-.office-tags-tabs .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     color: #34495E;
     background: transparent;
     font-weight: 600;
@@ -192,4 +192,33 @@
 
 .list-group .more a:hover {
     color: #3498DB;
+}
+
+.main-pagination {
+    margin-top: 15px;
+}
+
+.main-pagination .page-link {
+    color: #3498DB;
+    border-color: #ECF0F1;
+    font-weight: 400;
+}
+
+.main-pagination .page-link:hover {
+    color: #2980B9;
+    border-color: transparent;
+    z-index: 2;
+}
+
+.main-pagination .page-item.active .page-link {
+    color: #FFF;
+    background-color: #3498DB;
+    border-color: #3498DB;
+    z-index: 3;
+}
+
+.main-pagination .page-item.disabled .page-link {
+    color: #BBB;
+    border-color: #ECF0F1;
+    z-index: 3;
 }

@@ -18,8 +18,8 @@
     <button type="button" class="modify-user-profile-btn"><a href="javascript:void(0)">修改个人资料</a></button>
 </div>
 <div class="content-card office-tags">
-    <button type="button" class="publish-document-btn"><a href="javascript:void(0)">发布公文</a></button>
-    <ul class="nav nav-pills office-tags-tabs" id="myTab" role="tablist">
+    <button type="button" class="publish-document-btn"><a href="{% url 'office:document_publish' %}">发布公文</a></button>
+    <ul class="nav nav-pills" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="not-signed-documents-tab" data-toggle="tab" href="#not-signed-documents" role="tab"
                 aria-controls="not-signed-documents" aria-selected="true">未签收公文</a>
@@ -38,7 +38,7 @@
                         <span class="list-group-item-date">{{ document.created_time | date:"Y-m-d" }}</span>
                     </a></li>
             {% endfor %}
-                <span class="more"><a href="javascript:void(0)">全部公文 <i class="fa fa-angle-right"></i></a></span>
+                <span class="more"><a href="{% url 'office:document' %}">更多 <i class="fa fa-angle-right"></i></a></span>
             </ul>
         </div>
         <div class="tab-pane fade" id="all-documents" role="tabpanel" aria-labelledby="all-documents-tab">
@@ -49,7 +49,7 @@
                         <span class="list-group-item-date">{{ document.created_time | date:"Y-m-d" }}</span>
                     </a></li>
                 {% endfor %}
-                <span class="more"><a href="javascript:void(0)">全部公文 <i class="fa fa-angle-right"></i></a></span>
+                <span class="more"><a href="{% url 'office:document_all' %}">更多 <i class="fa fa-angle-right"></i></a></span>
             </ul>
         </div>
     </div>

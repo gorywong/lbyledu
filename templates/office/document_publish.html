@@ -1,0 +1,18 @@
+{% extends "office/office_base.html" %}
+{% load static %}
+{% load article_tags %}
+
+{% block main %}
+<div class="content-card office-tags">
+    <form action="" method="POST">
+    {% csrf_token %}
+        {{ form.none_field_errors }}
+        {{ form.media }}
+        {% for field in form %}
+        {{ field }}
+        {{ field.errors }}
+        {% endfor %}
+        <button type="submit" class="publish-btn">发布</button>
+    </form>
+</div>
+{% endblock main %}

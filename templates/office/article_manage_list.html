@@ -1,26 +1,27 @@
 {% extends "office/office_base.html" %}
 {% load static %}
-{% load article_tags %}
 
 {% block main %}
 <div class="content-card office-tags">
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a href="{% url 'office:document' %}" class="nav-link">未签收公文</a>
+            <a href="{% url 'office:article_manage' %}" class="nav-link{% if "/all/" not in request.path and "/publish/" not in request.path %} active{% endif %}">未审批文章</a>
         </li>
         <li class="nav-item">
-            <a href="{% url 'office:document_all' %}" class="nav-link active">全部公文</a>
+            <a href="{% url 'office:article_manage_all' %}" class="nav-link{% if "/all/" in request.path %} active{% endif %}">全部文章</a>
         </li>
         <li class="nav-item">
-            <a href="{% url 'office:document_publish' %}" class="nav-link">发布公文</a>
+            <a href="javascript:void(0)" class="nav-link{% if "/publish/" in request.path %} active{% endif %}">发表文章</a>
         </li>
     </ul>
     <ul class="list-group">
-    {% for document in document_list %}
-        <li class="list-group-item"><a href="javascript:void(0)">
-                <span class="list-group-item-title">{{ document.title }}</span>
-                <span class="list-group-item-date">{{ document.created_time | date:"Y-m-d" }}</span>
+    {% for article in article_list %}
+        <li class="list-group-item"><a href="{{ article.get_absolute_url }}">
+                <span class="list-group-item-title">{{ article.title }}</span>
+                <span class="list-group-item-date">{{ article.pub_date | date:"Y-m-d" }}</span>
             </a></li>
+    {% empty %}
+    <li class="list-group-item">暂无文章</li>
     {% endfor %}
     </ul>
     {% if is_paginated %}

@@ -6,13 +6,13 @@
 <div class="content-card office-tags">
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a href="{% url 'office:document' %}" class="nav-link active">未签收公文</a>
+            <a href="{% url 'office:document' %}" class="nav-link{% if "/all/" not in request.path and "/publish/" not in request.path %} active{% endif %}">未签收公文</a>
         </li>
         <li class="nav-item">
-            <a href="{% url 'office:document_all' %}" class="nav-link">全部公文</a>
+            <a href="{% url 'office:document_all' %}" class="nav-link{% if "/all/" in request.path %} active{% endif %}">全部公文</a>
         </li>
         <li class="nav-item">
-            <a href="{% url 'office:document_publish' %}" class="nav-link">发布公文</a>
+            <a href="{% url 'office:document_publish' %}" class="nav-link{% if "/publish/" in request.path %} active{% endif %}">发布公文</a>
         </li>
     </ul>
     <ul class="list-group">

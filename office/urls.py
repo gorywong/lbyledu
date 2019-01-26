@@ -11,7 +11,9 @@
 """
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required
-from .views import OfficeView, DocumentDetailView, DocumentAllListView, DocumentNotSignedListView, DocumentPublishView, AddressBookView
+from .views import OfficeView, DocumentDetailView, DocumentAllListView, DocumentNotSignedListView, DocumentPublishView
+from .views import ArticleManageListView, ArticleManageAllListView
+from .views import AddressBookView
 
 app_name = 'office'
 urlpatterns = [
@@ -20,5 +22,7 @@ urlpatterns = [
     path('document/all/', login_required()(DocumentAllListView.as_view()), name="document_all"),
     path('document/publish/', login_required()(DocumentPublishView.as_view()), name="document_publish"),
     path('document/<int:number>', login_required()(DocumentDetailView.as_view()), name="document_detail"),
+    path('articlemanage/', login_required()(ArticleManageListView.as_view()), name="article_manage"),
+    path('articlemanage/all/', login_required()(ArticleManageAllListView.as_view()), name="article_manage_all"),
     path('addressbook/', login_required()(AddressBookView.as_view()), name="address_book"),
 ]

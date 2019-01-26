@@ -21,6 +21,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from article.models import Article, Category
 from users.models import UserProfile, UserGroup
+from article.models import Article
 from .models import Document
 from .forms import DocumentPublishForm
 
@@ -53,7 +54,7 @@ class DocumentDetailView(DetailView):
 
 class DocumentNotSignedListView(ListView):
     model = Document
-    template_name = 'office/document_notsigned.html'
+    template_name = 'office/document_list.html'
     context_object_name = 'document_list'
     paginate_by = settings.PAGINATE_BY
 
@@ -113,7 +114,7 @@ class DocumentNotSignedListView(ListView):
 
 class DocumentAllListView(ListView):
     model = Document
-    template_name = 'office/document_all.html'
+    template_name = 'office/document_list.html'
     context_object_name = 'document_list'
     paginate_by = settings.PAGINATE_BY
 
@@ -212,6 +213,125 @@ class DocumentPublishView(FormView):
         else:
             return self.render_to_response({'form': form})
 
+
+class ArticleManageListView(ListView):
+    model = Article
+    template_name = 'office/article_manage_list.html'
+    context_object_name = 'article_list'
+    paginate_by = settings.PAGINATE_BY
+
+    def get_queryset(self, *args, **kwargs):
+        super(ArticleManageListView, self).get_queryset(*args, **kwargs)
+        article_list = Article.objects.filter(has_check=False)
+        
+        return article_list
+    
+    def get_context_data(self, **kwargs):
+        context = super(ArticleManageListView, self).get_context_data(**kwargs)
+
+        paginator = context.get('paginator')
+        page = context.get('page_obj')
+        is_paginated = context.get('is_paginated')
+        pagination_data = self.pagination_data(paginator, page, is_paginated)
+        context.update(pagination_data)
+        return context
+
+    def pagination_data(self, paginator, page, is_paginated):
+        if not is_paginated:
+            return {}
+
+        left = []
+        right = []
+        left_has_more = False
+        right_has_more = False
+        page_number = page.number
+        total_pages = paginator.num_pages
+        page_range = paginator.page_range
+
+        if page_number == 1:
+            right = page_range[page_number:page_number + 3]
+            if right[-1] < total_pages - 1:
+                right_has_more = True
+        elif page_number == total_pages:
+            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
+            if left[0] > 2:
+                left_has_more = True
+        else:
+            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
+            right = page_range[page_number:page_number + 3]
+            if right[-1] < total_pages - 1:
+                right_has_more = True
+            if left[0] > 2:
+                left_has_more = True
+
+        data = {
+            'left': left,
+            'right': right,
+            'left_has_more': left_has_more,
+            'right_has_more': right_has_more,
+        }
+
+        return data
+
+
+class ArticleManageAllListView(ListView):
+    model = Article
+    template_name = 'office/article_manage_list.html'
+    context_object_name = 'article_list'
+    paginate_by = settings.PAGINATE_BY
+
+    def get_queryset(self, *args, **kwargs):
+        super(ArticleManageAllListView, self).get_queryset(*args, **kwargs)
+        article_list = Article.objects.all()
+        
+        return article_list
+    
+    def get_context_data(self, **kwargs):
+        context = super(ArticleManageAllListView, self).get_context_data(**kwargs)
+
+        paginator = context.get('paginator')
+        page = context.get('page_obj')
+        is_paginated = context.get('is_paginated')
+        pagination_data = self.pagination_data(paginator, page, is_paginated)
+        context.update(pagination_data)
+        return context
+
+    def pagination_data(self, paginator, page, is_paginated):
+        if not is_paginated:
+            return {}
+
+        left = []
+        right = []
+        left_has_more = False
+        right_has_more = False
+        page_number = page.number
+        total_pages = paginator.num_pages
+        page_range = paginator.page_range
+
+        if page_number == 1:
+            right = page_range[page_number:page_number + 3]
+            if right[-1] < total_pages - 1:
+                right_has_more = True
+        elif page_number == total_pages:
+            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
+            if left[0] > 2:
+                left_has_more = True
+        else:
+            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
+            right = page_range[page_number:page_number + 3]
+            if right[-1] < total_pages - 1:
+                right_has_more = True
+            if left[0] > 2:
+                left_has_more = True
+
+        data = {
+            'left': left,
+            'right': right,
+            'left_has_more': left_has_more,
+            'right_has_more': right_has_more,
+        }
+
+        return data
 
 class AddressBookView(View):
     pass

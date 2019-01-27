@@ -22,6 +22,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.http import is_safe_url
 from .forms import LoginForm, RegisterForm
+from .models import UserProfile
 
 # Create your views here.
 
@@ -79,10 +80,16 @@ class RegisterView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        user = form.save(False)
-        user.save(True)
-        url = reverse('users:login')
-        return HttpResponseRedirect(url)
+        if form.is_valid():    
+            user = form.save(False)
+            if UserProfile.objects.filter(email=user.email):
+                form._errors['email_exists'] = '* 该邮件地址已被使用'
+                return self.render_to_response({'form': form})
+            user.save(True)
+            url = reverse('users:login')
+            return HttpResponseRedirect(url)
+        else:
+            return self.render_to_response({'form': form})
 
     
 class PasswordChangeView(View):

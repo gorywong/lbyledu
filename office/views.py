@@ -333,5 +333,18 @@ class ArticleManageAllListView(ListView):
 
         return data
 
+
+class UserManageView(ListView):
+    model = UserProfile
+    template_name = 'office/user_manage.html'
+    context_object_name = 'user_list'
+    paginate_by = settings.PAGINATE_BY
+
+    def get_queryset(self, *args, **kwargs):
+        super(UserManageView, self).get_queryset(*args, **kwargs)
+        user_list = UserProfile.objects.filter(is_active=False)
+        
+        return user_list
+
 class AddressBookView(View):
     pass

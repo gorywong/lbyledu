@@ -4,6 +4,29 @@
 
 {% block main %}
 <div class="content-card">
-
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">用户名</th>
+                <th scope="col">真实姓名</th>
+                <th scope="col">邮箱地址</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ user.username }}</td>
+                <td>{{ user.realname }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">暂无未激活用户</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock main %}

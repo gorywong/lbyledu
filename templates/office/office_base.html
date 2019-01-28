@@ -30,9 +30,9 @@
                             <li><a href="javascript:void(0)" class="sidebar-list-item top">网上办公</a></li>
                             <li><a href="{% url 'office:index' %}" class="sidebar-list-item{% ifequal current_route '' %} active{% endifequal %}">网上办公首页</a></li>
                             <li><a href="{% url 'office:document' %}" class="sidebar-list-item{% ifequal current_route 'document' %} active{% endifequal %}">公文签收</a></li>
-                            <li><a href="{% url 'office:article_manage' %}" class="sidebar-list-item{% ifequal current_route 'articlemanage' %} active{% endifequal %}">文章管理</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">审核新用户</a></li>
-                            <li><a href="javascript:void(0)" class="sidebar-list-item">通讯录</a></li>
+                            <li><a href="{% url 'office:article' %}" class="sidebar-list-item{% ifequal current_route 'article' %} active{% endifequal %}">文章管理</a></li>
+                            <li><a href="{% url 'office:user' %}" class="sidebar-list-item{% ifequal current_route 'user' %} active{% endifequal %}">审核新用户</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item{% ifequal current_route 'addressbook' %} active{% endifequal %}">通讯录</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-8 col-md-9 main-content-body">

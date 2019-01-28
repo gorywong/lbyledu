@@ -232,3 +232,11 @@
     background-color: #2C81BA;
     border-color: #2C81BA;
 }
+
+.office-tags .list-group .list-group-item:first-child {
+    border-top: none;
+}
+
+.office-tags .list-group .list-group-item:first-child:hover {
+    border-top: none;
+}

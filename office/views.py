@@ -23,9 +23,48 @@ from article.models import Article, Category
 from users.models import UserProfile, UserGroup
 from article.models import Article
 from .models import Document
-from .forms import DocumentPublishForm
+from .forms import DocumentPublishForm, ArticlePublishForm
 
 # Create your views here.
+class BaseOfficeListView(ListView):
+    def pagination_data(self, paginator, page, is_paginated):
+        if not is_paginated:
+            return {}
+
+        left = []
+        right = []
+        left_has_more = False
+        right_has_more = False
+        page_number = page.number
+        total_pages = paginator.num_pages
+        page_range = paginator.page_range
+
+        if page_number == 1:
+            right = page_range[page_number:page_number + 3]
+            if right[-1] < total_pages - 1:
+                right_has_more = True
+        elif page_number == total_pages:
+            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
+            if left[0] > 2:
+                left_has_more = True
+        else:
+            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
+            right = page_range[page_number:page_number + 3]
+            if right[-1] < total_pages - 1:
+                right_has_more = True
+            if left[0] > 2:
+                left_has_more = True
+
+        data = {
+            'left': left,
+            'right': right,
+            'left_has_more': left_has_more,
+            'right_has_more': right_has_more,
+        }
+
+        return data
+
+
 class OfficeView(ListView):
     model = Document
     template_name = 'office/office_index.html'
@@ -52,7 +91,7 @@ class DocumentDetailView(DetailView):
     pass
 
 
-class DocumentNotSignedListView(ListView):
+class DocumentNotSignedListView(BaseOfficeListView):
     model = Document
     template_name = 'office/document_list.html'
     context_object_name = 'document_list'
@@ -74,45 +113,8 @@ class DocumentNotSignedListView(ListView):
         context.update(pagination_data)
         return context
 
-    def pagination_data(self, paginator, page, is_paginated):
-        if not is_paginated:
-            return {}
 
-        left = []
-        right = []
-        left_has_more = False
-        right_has_more = False
-        page_number = page.number
-        total_pages = paginator.num_pages
-        page_range = paginator.page_range
-
-        if page_number == 1:
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-        elif page_number == total_pages:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            if left[0] > 2:
-                left_has_more = True
-        else:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-            if left[0] > 2:
-                left_has_more = True
-
-        data = {
-            'left': left,
-            'right': right,
-            'left_has_more': left_has_more,
-            'right_has_more': right_has_more,
-        }
-
-        return data
-
-
-class DocumentAllListView(ListView):
+class DocumentAllListView(BaseOfficeListView):
     model = Document
     template_name = 'office/document_list.html'
     context_object_name = 'document_list'
@@ -133,43 +135,6 @@ class DocumentAllListView(ListView):
         pagination_data = self.pagination_data(paginator, page, is_paginated)
         context.update(pagination_data)
         return context
-
-    def pagination_data(self, paginator, page, is_paginated):
-        if not is_paginated:
-            return {}
-
-        left = []
-        right = []
-        left_has_more = False
-        right_has_more = False
-        page_number = page.number
-        total_pages = paginator.num_pages
-        page_range = paginator.page_range
-
-        if page_number == 1:
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-        elif page_number == total_pages:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            if left[0] > 2:
-                left_has_more = True
-        else:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-            if left[0] > 2:
-                left_has_more = True
-
-        data = {
-            'left': left,
-            'right': right,
-            'left_has_more': left_has_more,
-            'right_has_more': right_has_more,
-        }
-
-        return data
 
 
 class DocumentPublishView(FormView):
@@ -214,9 +179,9 @@ class DocumentPublishView(FormView):
             return self.render_to_response({'form': form})
 
 
-class ArticleManageListView(ListView):
+class ArticleManageListView(BaseOfficeListView):
     model = Article
-    template_name = 'office/article_manage_list.html'
+    template_name = 'office/article_list.html'
     context_object_name = 'article_list'
     paginate_by = settings.PAGINATE_BY
 
@@ -236,47 +201,10 @@ class ArticleManageListView(ListView):
         context.update(pagination_data)
         return context
 
-    def pagination_data(self, paginator, page, is_paginated):
-        if not is_paginated:
-            return {}
 
-        left = []
-        right = []
-        left_has_more = False
-        right_has_more = False
-        page_number = page.number
-        total_pages = paginator.num_pages
-        page_range = paginator.page_range
-
-        if page_number == 1:
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-        elif page_number == total_pages:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            if left[0] > 2:
-                left_has_more = True
-        else:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-            if left[0] > 2:
-                left_has_more = True
-
-        data = {
-            'left': left,
-            'right': right,
-            'left_has_more': left_has_more,
-            'right_has_more': right_has_more,
-        }
-
-        return data
-
-
-class ArticleManageAllListView(ListView):
+class ArticleManageAllListView(BaseOfficeListView):
     model = Article
-    template_name = 'office/article_manage_list.html'
+    template_name = 'office/article_list.html'
     context_object_name = 'article_list'
     paginate_by = settings.PAGINATE_BY
 
@@ -296,45 +224,20 @@ class ArticleManageAllListView(ListView):
         context.update(pagination_data)
         return context
 
-    def pagination_data(self, paginator, page, is_paginated):
-        if not is_paginated:
-            return {}
 
-        left = []
-        right = []
-        left_has_more = False
-        right_has_more = False
-        page_number = page.number
-        total_pages = paginator.num_pages
-        page_range = paginator.page_range
+class ArticlePublishView(FormView):
+    template_name = 'office/article_publish.html'
+    form_class = ArticlePublishForm
+    success_url = '/'
+    redirect_field_name = REDIRECT_FIELD_NAME
 
-        if page_number == 1:
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-        elif page_number == total_pages:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            if left[0] > 2:
-                left_has_more = True
-        else:
-            left = page_range[(page_number - 2) if (page_number - 2) > 0 else 0:page_number - 1]
-            right = page_range[page_number:page_number + 3]
-            if right[-1] < total_pages - 1:
-                right_has_more = True
-            if left[0] > 2:
-                left_has_more = True
-
-        data = {
-            'left': left,
-            'right': right,
-            'left_has_more': left_has_more,
-            'right_has_more': right_has_more,
-        }
-
-        return data
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ArticlePublishView, self).dispatch(request, *args, **kwargs)
+    
 
 
-class UserManageView(ListView):
+class UserManageView(BaseOfficeListView):
     model = UserProfile
     template_name = 'office/user_manage.html'
     context_object_name = 'user_list'
@@ -345,6 +248,16 @@ class UserManageView(ListView):
         user_list = UserProfile.objects.filter(is_active=False)
         
         return user_list
+
+    def get_context_data(self, **kwargs):
+        context = super(UserManageView, self).get_context_data(**kwargs)
+
+        paginator = context.get('paginator')
+        page = context.get('page_obj')
+        is_paginated = context.get('is_paginated')
+        pagination_data = self.pagination_data(paginator, page, is_paginated)
+        context.update(pagination_data)
+        return context
 
 class AddressBookView(View):
     pass

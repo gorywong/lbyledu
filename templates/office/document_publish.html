@@ -23,21 +23,21 @@
             {% for field in form %}
             <div class="form-group col-7">
             {% if field.label %}
-            <label for="id_{{ field.name }}">{{ field.label }}</label>
+                <label for="id_{{ field.name }}">{{ field.label }}</label>
             {% endif %}
             {% if field.name == 'number' %}
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon">{{ date | date:"Ymd" }}</span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon">{{ date | date:"Ymd" }}</span>
+                    </div>
+                    {{ field }}
+                    {% if field.errors or form.errors.number_exists %}
+                    <div class="invalid-feedback">
+                        {{ field.errors.as_text }}
+                        {{ form.errors.number_exists }}
+                    </div>
+                    {% endif %}
                 </div>
-                {{ field }}
-                {% if field.errors or form.errors.number_exists %}
-                <div class="invalid-feedback">
-                    {{ field.errors.as_text }}
-                    {{ form.errors.number_exists }}
-                </div>
-                {% endif %}
-            </div>
             {% elif field.name == 'receiver_group' %}
                 {{ field }}
                 {% if field.errors or form.errors.no_receiver_group %}

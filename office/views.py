@@ -10,18 +10,16 @@
 @Description:
 """
 from datetime import datetime
-from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.views.generic.base import View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, DeleteView, UpdateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from article.models import Article, Category
 from users.models import UserProfile, UserGroup
-from article.models import Article
 from .models import Document
 from .forms import DocumentPublishForm, ArticlePublishForm
 
@@ -80,7 +78,7 @@ class OfficeView(ListView):
     
     def get_context_data(self, *args, **kwargs):
         context = super(OfficeView, self).get_context_data(**kwargs)
-        documents = Document.objects.all().filter(receiver__id=self.request.user.id)
+        documents = Document.objects.filter(receiver__id=self.request.user.id)
         not_signed_documents = documents.exclude(checked_receiver__id=self.request.user.id)[:10]
         context['not_signed_document_list'] = not_signed_documents
 
@@ -88,7 +86,22 @@ class OfficeView(ListView):
 
 
 class DocumentDetailView(DetailView):
-    pass
+    model = Document
+    template_name = 'office/document_detail.html'
+    context_object_name = 'document'
+    slug_field = 'number'
+    slug_url_kwarg = 'number'
+
+    # def get_context_data(self, **kwargs):
+    #     kwargs['next_article'] = self.object.next_article
+    #     kwargs['prev_article'] = self.object.prev_article
+    #     return super(DocumentDetailView, self).get_context_data(**kwargs)
+
+    def get_queryset(self, *args, **kwargs):
+        super(DocumentDetailView, self).get_queryset(*args, **kwargs)
+        documents = Document.objects.filter(receiver__id=self.request.user.id)
+        
+        return documents
 
 
 class DocumentNotSignedListView(BaseOfficeListView):
@@ -99,7 +112,7 @@ class DocumentNotSignedListView(BaseOfficeListView):
 
     def get_queryset(self, *args, **kwargs):
         super(DocumentNotSignedListView, self).get_queryset(*args, **kwargs)
-        documents = Document.objects.all().filter(receiver__id=self.request.user.id).exclude(checked_receiver__id=self.request.user.id)
+        documents = Document.objects.filter(receiver__id=self.request.user.id).exclude(checked_receiver__id=self.request.user.id)
         
         return documents
     
@@ -122,7 +135,7 @@ class DocumentAllListView(BaseOfficeListView):
 
     def get_queryset(self, *args, **kwargs):
         super(DocumentAllListView, self).get_queryset(*args, **kwargs)
-        documents = Document.objects.all().filter(receiver__id=self.request.user.id)
+        documents = Document.objects.filter(receiver__id=self.request.user.id)
         
         return documents
     
@@ -169,7 +182,7 @@ class DocumentPublishView(FormView):
                 author=self.request.user,
                 content=form.cleaned_data['content'],
                 receiver_group=UserGroup.objects.get(id=receiver_group_id),
-                number=number,
+                number=number
             )
             users = UserProfile.objects.filter(usergroups__id=receiver_group_id)
             document.receiver.add(*users)
@@ -234,7 +247,21 @@ class ArticlePublishView(FormView):
     @method_decorator(csrf_protect)
     def dispatch(self, request, *args, **kwargs):
         return super(ArticlePublishView, self).dispatch(request, *args, **kwargs)
-    
+
+    def form_valid(self, form):
+        if form.is_valid():
+            article = Article.objects.create(
+                title=form.cleaned_data['title'],
+                category=form.cleaned_data['category'],
+                author=form.cleaned_data['author'],
+                origin=form.cleaned_data['origin'],
+                content=form.cleaned_data['content'],
+                has_check=form.cleaned_data['has_check'],
+                is_banner=form.cleaned_data['is_banner']
+            )
+            return super(ArticlePublishView, self).form_valid(form)
+        else:
+            return self.render_to_response({'form': form})
 
 
 class UserManageView(BaseOfficeListView):
@@ -258,6 +285,40 @@ class UserManageView(BaseOfficeListView):
         pagination_data = self.pagination_data(paginator, page, is_paginated)
         context.update(pagination_data)
         return context
+
+
+class ArticleDeleteView(DeleteView):
+    model = Article
+    success_url = "/"
+    pk_url_kwarg = "article_id"
+
+
+class ArticleUpdateView(UpdateView):
+    model = Article
+    form_class = ArticlePublishForm
+    template_name = "office/article_publish.html"
+    success_url = "/office/article/"
+    pk_url_kwarg = "article_id"
+
+    def get_initial(self):
+        initial = super(ArticleUpdateView, self).get_initial()
+        current_article = self.get_object()
+
+        initial['title'] = current_article.title
+        initial['category'] = current_article.category
+        initial['author'] = current_article.author
+        initial['origin'] = current_article.origin
+        initial['content'] = current_article.content
+        initial['has_check'] = current_article.has_check
+        initial['is_banner'] = current_article.is_banner
+
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super(ArticleUpdateView, self).get_context_data(**kwargs)
+        context["article"] = self.get_object()
+        return context
+
 
 class AddressBookView(View):
     pass

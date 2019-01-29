@@ -3,61 +3,63 @@
 {% load article_tags %}
 
 {% block main %}
-<div class="content-card office-tags">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a href="{% url 'office:document' %}" class="nav-link">未签收公文</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'office:document_all' %}" class="nav-link">全部公文</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'office:document_publish' %}" class="nav-link active">发布公文</a>
-        </li>
-    </ul>
-    <form action="{% url 'office:document_publish' %}" method="POST">
-        <div class="form-row">
-            {% csrf_token %}
-            {{ form.none_field_errors }}
-            {{ form.media }}
-            {% for field in form %}
-            <div class="form-group col-7">
-            {% if field.label %}
-                <label for="id_{{ field.name }}">{{ field.label }}</label>
-            {% endif %}
-            {% if field.name == 'number' %}
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon">{{ date | date:"Ymd" }}</span>
+<div class="main-list-body panel-body">
+    <div class="content-card office-tags">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a href="{% url 'office:document' %}" class="nav-link">未签收公文</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'office:document_all' %}" class="nav-link">全部公文</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'office:document_publish' %}" class="nav-link active">发布公文</a>
+            </li>
+        </ul>
+        <form action="{% url 'office:document_publish' %}" method="POST">
+            <div class="form-row">
+                {% csrf_token %}
+                {{ form.none_field_errors }}
+                {{ form.media }}
+                {% for field in form %}
+                <div class="form-group col-7">
+                {% if field.label %}
+                    <label for="id_{{ field.name }}">{{ field.label }}</label>
+                {% endif %}
+                {% if field.name == 'number' %}
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon">{{ date | date:"Ymd" }}</span>
+                        </div>
+                        {{ field }}
+                        {% if field.errors or form.errors.number_exists %}
+                        <div class="invalid-feedback">
+                            {{ field.errors.as_text }}
+                            {{ form.errors.number_exists }}
+                        </div>
+                        {% endif %}
                     </div>
+                {% elif field.name == 'receiver_group' %}
                     {{ field }}
-                    {% if field.errors or form.errors.number_exists %}
+                    {% if field.errors or form.errors.no_receiver_group %}
                     <div class="invalid-feedback">
                         {{ field.errors.as_text }}
-                        {{ form.errors.number_exists }}
+                        {{ form.errors.no_receiver_group }}
                     </div>
                     {% endif %}
-                </div>
-            {% elif field.name == 'receiver_group' %}
+                {% else %}
                 {{ field }}
-                {% if field.errors or form.errors.no_receiver_group %}
+                {% if field.errors %}
                 <div class="invalid-feedback">
                     {{ field.errors.as_text }}
-                    {{ form.errors.no_receiver_group }}
                 </div>
                 {% endif %}
-            {% else %}
-            {{ field }}
-            {% if field.errors %}
-            <div class="invalid-feedback">
-                {{ field.errors.as_text }}
+                {% endif %}
+                </div>
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endif %}
-            </div>
-            {% endfor %}
-        </div>
-        <button type="submit" class="btn publish-btn btn-primary">发布</button>
-    </form>
+            <button type="submit" class="btn publish-btn btn-primary">发布</button>
+        </form>
+    </div>
 </div>
 {% endblock main %}

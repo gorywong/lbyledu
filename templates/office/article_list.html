@@ -2,64 +2,75 @@
 {% load static %}
 
 {% block main %}
-<div class="content-card office-tags">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a href="{% url 'office:article' %}" class="nav-link{% if "/all/" not in request.path and "/publish/" not in request.path %} active{% endif %}">未审批文章</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'office:article_all' %}" class="nav-link{% if "/all/" in request.path %} active{% endif %}">全部文章</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'office:article_publish' %}" class="nav-link{% if "/publish/" in request.path %} active{% endif %}">发表文章</a>
-        </li>
-    </ul>
-    <ul class="list-group">
-    {% for article in article_list %}
-        <li class="list-group-item"><a href="{{ article.get_absolute_url }}">
-                <span class="list-group-item-title">{{ article.title }}</span>
-                <span class="list-group-item-date">{{ article.pub_date | date:"Y-m-d" }}</span>
-            </a></li>
-    {% empty %}
-    <li class="list-group-item">暂无文章</li>
-    {% endfor %}
-    </ul>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation example" class="main-pagination">
-        <ul class="pagination pagination-sm justify-content-end">
-        {% if page_obj.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page=1">首页</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">上一页</a></li>
-        {% else %}
-            <li class="page-item disabled"><a class="page-link" href="">首页</a></li>
-            <li class="page-item disabled"><a class="page-link" href="">上一页</a></li>
-        {% endif %}
-        {% if left %}
-            {% if left_has_more %}
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">...</a></li>
-            {% endif %}
-            {% for i in left %}
-                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-            {% endfor %}
-        {% endif %}
-            <li class="page-item"><a class="page-link" href="?page={{  page_obj.number  }}">{{ page_obj.number }}</a></li>
-        {% if right %}
-            {% for i in right %}
-                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-            {% endfor %}
-            {% if right_has_more %}
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">...</a></li>
-            {% endif %}
-        {% endif %}
-        {% if page_obj.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">下一页</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">尾页</a></li>
-        {% else %}
-            <li class="page-item disabled"><a class="page-link" href="">下一页</a></li>
-            <li class="page-item disabled"><a class="page-link" href="">尾页</a></li>
-        {% endif %}
+<div class="main-list-body panel-body">
+    <div class="content-card office-tags article-manage">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a href="{% url 'office:article' %}" class="nav-link{% if "/all/" not in request.path and "/publish/" not in request.path %} active{% endif %}">未审批文章</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'office:article_all' %}" class="nav-link{% if "/all/" in request.path %} active{% endif %}">全部文章</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'office:article_publish' %}" class="nav-link{% if "/publish/" in request.path %} active{% endif %}">发表文章</a>
+            </li>
         </ul>
-    </nav>
-    {% endif %}
+        <ul class="list-group">
+        {% for article in article_list %}
+            <li class="list-group-item"><a href="{{ article.get_absolute_url }}">
+                    <span class="list-group-item-title">{{ article.title }}</span>
+                    <span class="list-group-item-date">{{ article.pub_date | date:"Y-m-d" }}</span>
+                </a>
+            <div class="text-edit-block">
+                <form action="{% url 'office:article_update' article.id %}" method="GET">
+                    <button type="submit" class="btn-update text-primary">编辑</button>
+                </form>
+                <form action="{% url 'office:article_delete' article.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-delete text-danger">删除</button>
+                </form>
+            </div></li>
+        {% empty %}
+        <li class="list-group-item">暂无文章</li>
+        {% endfor %}
+        </ul>
+        {% if is_paginated %}
+        <nav aria-label="Page navigation example" class="main-pagination">
+            <ul class="pagination pagination-sm justify-content-end">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">首页</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">上一页</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link" href="">首页</a></li>
+                <li class="page-item disabled"><a class="page-link" href="">上一页</a></li>
+            {% endif %}
+            {% if left %}
+                {% if left_has_more %}
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)">...</a></li>
+                {% endif %}
+                {% for i in left %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endfor %}
+            {% endif %}
+                <li class="page-item"><a class="page-link" href="?page={{  page_obj.number  }}">{{ page_obj.number }}</a></li>
+            {% if right %}
+                {% for i in right %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endfor %}
+                {% if right_has_more %}
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)">...</a></li>
+                {% endif %}
+            {% endif %}
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">下一页</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">尾页</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link" href="">下一页</a></li>
+                <li class="page-item disabled"><a class="page-link" href="">尾页</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
 </div>
 {% endblock main %}

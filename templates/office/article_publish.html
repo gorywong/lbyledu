@@ -3,38 +3,44 @@
 {% load article_tags %}
 
 {% block main %}
-<div class="content-card office-tags">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a href="{% url 'office:article' %}" class="nav-link">未审批文章</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'office:article_all' %}" class="nav-link">全部文章</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'office:article_publish' %}" class="nav-link active">发表文章</a>
-        </li>
-    </ul>
-    <form action="{% url 'office:article_publish' %}" method="POST">
-        <div class="form-row">
-            {% csrf_token %}
-            {{ form.none_field_errors }}
-            {{ form.media }}
-            {% for field in form %}
-            <div class="form-group col-7">
-                {% if field.label %}
-                <label for="id_{{ field.name }}">{{ field.label }}</label>
-                {% endif %}
-                {{ field }}
-                {% if field.errors %}
-                <div class="invalid-feedback">
-                    {{ field.errors.as_text }}
+<div class="main-list-body panel-body">
+    <div class="content-card office-tags">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a href="{% url 'office:article' %}" class="nav-link">未审批文章</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'office:article_all' %}" class="nav-link">全部文章</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'office:article_publish' %}" class="nav-link active">发表文章</a>
+            </li>
+        </ul>
+        {% if '/article/update/' in request.path %}
+        <form action="{{ article.get_update_url }}" method="POST">
+        {% else %}
+        <form action="{% url 'office:article_publish' %}" method="POST">
+        {% endif %}
+            <div class="form-row">
+                {% csrf_token %}
+                {{ form.none_field_errors }}
+                {{ form.media }}
+                {% for field in form %}
+                <div class="form-group col-7">
+                    {% if field.label %}
+                    <label for="id_{{ field.name }}">{{ field.label }}</label>
+                    {% endif %}
+                    {{ field }}
+                    {% if field.errors %}
+                    <div class="invalid-feedback">
+                        {{ field.errors.as_text }}
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-        <button type="submit" class="btn publish-btn btn-primary">发布</button>
-    </form>
+            <button type="submit" class="btn publish-btn btn-primary">发布</button>
+        </form>
+    </div>
 </div>
 {% endblock main %}

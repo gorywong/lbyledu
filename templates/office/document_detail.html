@@ -3,4 +3,27 @@
 {% load article_tags %}
 
 {% block main %}
+<div class="panel-heading">
+    <h3 class="panel-title">
+        <span class="panel-title-word" data-toggle="offcanvas">
+            <i class="fa fa-align-right"></i> 网上办公
+        </span>
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">首页</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'office:index' %}">网上办公</a></li>
+                <li class="breadcrumb-item active" aria-current="page">公文签收</li>
+        </ol>
+    </h3>
+</div>
+<div class="panel-body">
+    <div class="content-page">
+        <h2 class="content-page-title">{{ document.title }}</h2>
+        <div class="content-page-date">
+            <span>发布时间：{{ document.created_time }}</span>
+            <span>来源：中心学校办公室</span>
+            <span>作者: {{ document.author.name }}</span>
+        </div>
+        {{ document.content | safe }}
+    </div>
+</div>
 {% endblock main %}

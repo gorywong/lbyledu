@@ -126,6 +126,7 @@ class ArticleDetailView(DetailView):
     template_name = 'article_detail.html'
     context_object_name = 'article'
     pk_url_kwarg = 'article_id'
+    queryset = Article.objects.filter(status='p', has_check=True)
 
     def get_object(self, queryset=None):
         obj = super(ArticleDetailView, self).get_object()

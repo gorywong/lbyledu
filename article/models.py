@@ -89,6 +89,9 @@ class Article(BaseModel):
             'day': self.created_time.day
         })
 
+    def get_update_url(self):
+        return reverse('office:article_update', kwargs={'article_id': self.id})
+
     def viewed(self):
         self.views += 1
         self.save(update_fields=['views'])

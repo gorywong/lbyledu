@@ -68,6 +68,7 @@ li {
     left: 0;
     top: 15px;
     font-size: 1em;
+    margin-left: 10px;
 }
 
 .return-old-version a {
@@ -414,13 +415,17 @@ li {
 /* main-footer */
 .main-footer {
     position: relative;
-    font-size: 12px;
-    padding: 35px 0 5px;
+    font-size: 14px;
+    padding: 35px 0 20px;
     margin-top: 20px;
     color: #999;
     text-align: center;
     background-color: #f9f9f9;
     border-top: 1px solid #e5e5e5;
+}
+
+.main-footer p {
+    margin-bottom: 0.5rem;
 }
 
 /* common */

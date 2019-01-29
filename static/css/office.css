@@ -240,3 +240,45 @@
 .office-tags .list-group .list-group-item:first-child:hover {
     border-top: none;
 }
+
+.article-manage .list-group .list-group-item>a:first-child {
+    display: inline-block;
+    width: 85%;
+    vertical-align: middle;
+}
+
+.article-manage .list-group .list-group-item>a:first-child span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.text-edit-block {
+    display: inline-block;
+    float: right;
+}
+
+.text-edit-block form {
+    display: inline-block;
+}
+
+.btn-update,
+.btn-delete {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+
+.btn-update:hover {
+    color: #0056B3 !important;
+}
+
+.btn-delete:hover {
+    color: #A71D2A !important;
+}

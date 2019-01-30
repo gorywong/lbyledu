@@ -187,13 +187,14 @@ CKEDITOR_CONFIGS = {
                 # put the name of your editor.ui.addButton here
                 'Preview',
                 'Maximize',
-
+                'textindent'
             ]},
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
+            'textindent',
         ]),
     }
 }

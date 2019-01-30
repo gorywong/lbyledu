@@ -22,6 +22,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 from lbyledu.utils import cache_decorator, cache
 from users.models import UserGroup, UserProfile
+from organization.models import Organization
 
 logger = logging.getLogger(__name__)
 
@@ -62,3 +63,12 @@ class Document(BaseModel):
 
     def get_absolute_url(self):
         return reverse("office:document_detail", kwargs={"number": self.number})
+
+
+class OrganizationAdmins(BaseModel):
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="单位")
+    admin  = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="管理员")
+
+    class Meta:
+        verbose_name = "网站管理员"
+        verbose_name_plural = verbose_name

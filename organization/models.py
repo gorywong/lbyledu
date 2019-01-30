@@ -17,7 +17,6 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.utils.timezone import now
 from django.urls import reverse
-
 from lbyledu.utils import cache_decorator, cache
 
 logger = logging.getLogger(__name__)

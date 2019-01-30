@@ -10,7 +10,7 @@
 @Description:
 """
 from django.contrib import admin
-from .models import Document
+from .models import Document, OrganizationAdmins
 
 # Register your models here.
 class DocumentAdmin(admin.ModelAdmin):
@@ -21,3 +21,9 @@ class DocumentAdmin(admin.ModelAdmin):
     list_filter = ('author', 'receiver_group')
     exclude = ('created_time', 'last_mod_time')
     view_on_site = True
+
+
+class OrganizationAdminsAdmin(admin.ModelAdmin):
+    list_display = ('organization', 'admin')
+    list_display_links = ('organization', 'admin')
+    list_filter = ('organization',)

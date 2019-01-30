@@ -45,3 +45,4 @@ admin_site.register(UserGroup, UserGroupAdmin)
 admin_site.register(LogEntry, LogEntryAdmin)
 
 admin_site.register(Document, DocumentAdmin)
+admin_site.register(OrganizationAdmins, OrganizationAdminsAdmin)

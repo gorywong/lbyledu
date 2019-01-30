@@ -18,8 +18,9 @@ from django.views.generic.edit import FormView, DeleteView, UpdateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.http import HttpResponseRedirect
 from article.models import Article, Category
-from users.models import UserProfile, UserGroup
+from users.models import UserProfile, UserGroup, Organization
 from .models import Document
 from .forms import DocumentPublishForm, ArticlePublishForm
 
@@ -92,16 +93,23 @@ class DocumentDetailView(DetailView):
     slug_field = 'number'
     slug_url_kwarg = 'number'
 
-    # def get_context_data(self, **kwargs):
-    #     kwargs['next_article'] = self.object.next_article
-    #     kwargs['prev_article'] = self.object.prev_article
-    #     return super(DocumentDetailView, self).get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        kwargs['organization_list'] = Organization.objects.filter(id__gt=1)
+        kwargs['document'] = self.get_object()
+        kwargs['checked_receiver'] = self.get_object().checked_receiver.all()
+        return super(DocumentDetailView, self).get_context_data(**kwargs)
 
     def get_queryset(self, *args, **kwargs):
         super(DocumentDetailView, self).get_queryset(*args, **kwargs)
         documents = Document.objects.filter(receiver__id=self.request.user.id)
         
         return documents
+
+    def post(self, request, number):
+        document = self.get_object()
+        document.checked_receiver.add(request.user)
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
 
 
 class DocumentNotSignedListView(BaseOfficeListView):

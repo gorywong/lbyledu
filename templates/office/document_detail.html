@@ -3,15 +3,20 @@
 {% load article_tags %}
 
 {% block main %}
+<div class="setting-font-size btn-group-vertical">
+    <button type="button" name="lg" class="btn btn-xs btn-default">大</button>
+    <button type="button" name="md" class="btn btn-xs btn-default">中</button>
+    <button type="button" class="btn btn-xs btn-default active">小</button>
+</div>
 <div class="panel-heading">
     <h3 class="panel-title">
         <span class="panel-title-word" data-toggle="offcanvas">
             <i class="fa fa-align-right"></i> 网上办公
         </span>
         <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}">首页</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'office:index' %}">网上办公</a></li>
-                <li class="breadcrumb-item active" aria-current="page">公文签收</li>
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">首页</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'office:index' %}">网上办公</a></li>
+            <li class="breadcrumb-item active" aria-current="page">公文签收</li>
         </ol>
     </h3>
 </div>
@@ -20,10 +25,26 @@
         <h2 class="content-page-title">{{ document.title }}</h2>
         <div class="content-page-date">
             <span>发布时间：{{ document.created_time }}</span>
-            <span>来源：中心学校办公室</span>
-            <span>作者: {{ document.author.name }}</span>
+            <span>公文编号：{{ document.number }}</span>
+            <span>作者: {{ document.author.realname }}</span>
         </div>
         {{ document.content | safe }}
+    </div>
+    <div class="checked-receiver content-card">
+        <ul class="organization-list clearfix">
+        <form action="{{ document.get_absolute_url }}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            {% if request.user in checked_receiver %}
+            <button type="button" class="check-document-btn float-right" disabled>已签收</button>
+            {% else %}
+            <button type="submit" class="check-document-btn float-right">签收公文</button>
+            {% endif %}
+        </form>
+        {% for org in organization_list %}
+            <li class="organization float-left has-checked">{{ org.name }}</li>
+        {% endfor %}
+        </ul>
     </div>
 </div>
 {% endblock main %}

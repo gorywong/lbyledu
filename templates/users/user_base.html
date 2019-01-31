@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人中心 - 豫灵镇中心学校</title>
+
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/users.css' %}" rel="stylesheet">
+    {% block css %}{% endblock css %}
+</head>
+
+<body>
+
+    {% include "header.html" %}
+
+    {% include "toolbar.html" %}
+
+    <div class="main-content container">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="main-content container">
+                <div class="row row-offcanvas row-offcanvas-left">
+                    <div class="col-sm-4 col-md-3 sidebar-offcanvas users-profile-sidebar" id="sidebar">
+                        <ul class="users-sidebar-list-group">
+                            <li class="top"><span class="real-name">{{ request.user.realname }}</span></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item"><i class="fa fa-user-circle-o"></i> 基本信息</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item"><i class="fa fa-commenting-o"></i> 我的消息</a></li>
+                            <li><a href="javascript:void(0)" class="sidebar-list-item"><i class="fa fa-asterisk"></i> 修改密码</a></li>
+                            <li class="bottom"><a href="{% url 'users:logout' %}" class="sidebar-list-item"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-8 col-md-9 main-content-body">
+                        <div class="panel">
+                            {% block main %}
+                            
+                            {% endblock main %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+
+    <!-- JavaScript -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block js %}{% endblock js %}
+</body>
+
+</html>

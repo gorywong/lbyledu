@@ -48,6 +48,9 @@ class UserProfile(AbstractUser):
     def __str__(self):
         return self.username
 
+    def get_absolute_url(self):
+        return reverse('users:user_profile', kwargs={'username': self.username})
+
 
 class UserGroup(models.Model):
     id = models.AutoField(primary_key=True)

@@ -10,11 +10,13 @@
 @Description:
 """
 import re
+from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import get_user_model
 from django.forms import widgets
 from django.conf import settings
 from captcha.fields import CaptchaField, CaptchaTextInput
+from .models import EmailVerifyRecord
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
@@ -22,6 +24,7 @@ class LoginForm(AuthenticationForm):
 
         self.fields['username'].widget = widgets.TextInput(attrs={'placeholder': '请输入用户名或邮箱地址'})
         self.fields['password'].widget = widgets.PasswordInput(attrs={'placeholder': '请输入密码'})
+
 
 class RegisterForm(UserCreationForm):
     DEFAULT_ERROR_MESSAGES = {'required': '请填写该字段', 'invalid_choice': '请正确填写该字段'}
@@ -55,3 +58,15 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ("username", "email")
+
+
+class ForgetPasswordForm(forms.ModelForm):
+    DEFAULT_ERROR_MESSAGES = {'required': '请填写该字段', 'invalid_choice': '请正确填写该字段'}
+
+    class Meta:
+        model = EmailVerifyRecord
+        fields = ['email', 'code']
+        labels = {
+            'email': "邮箱地址",
+            'code': "验证码",
+        }

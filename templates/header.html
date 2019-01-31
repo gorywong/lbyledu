@@ -9,7 +9,7 @@
                 <div class="main-user">
                     <span>欢迎您，<a href="javascript:void(0)">{% if request.user.realname %}{{ request.user.realname }}{% else %}{{ request.user.username }}{% endif %} <i class="fa fa-caret-down"></i></a></span>
                     <div class="main-user-menu">
-                        <a class="main-user-item" href="javascript:void(0)">个人中心</a>
+                        <a class="main-user-item" href="{{ request.user.get_absolute_url }}">个人中心</a>
                         <a class="main-user-item" href="javascript:void(0)">修改密码</a>
                         <a class="main-user-item" href="{% url 'users:logout' %}">退出登录</a>
                     </div>

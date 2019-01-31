@@ -1,0 +1,22 @@
+{% extends "users/user_base.html" %}
+
+{% block main %}
+<div class="main-list-body panel-body">
+    <div class="content-card">
+        <span class="user-profile-intro-head">用户名</span>
+        <span class="user-profile-intro-content">{{ request.user.username }}</span>
+        <br>
+        <span class="user-profile-intro-head">真实姓名</span>
+        <span class="user-profile-intro-content">{{ request.user.realname }}</span>
+        <br>
+        <span class="user-profile-intro-head">性别</span>
+        <span class="user-profile-intro-content">{{ request.user.gender }}</span>
+        <br>
+        <span class="user-profile-intro-head">邮件地址</span>
+        <span class="user-profile-intro-content">{{ request.user.email }}</span>
+        <br>
+        <span class="user-profile-intro-head">所属单位</span>
+        <span class="user-profile-intro-content">{{ request.user.organization.name }}</span>
+    </div>
+</div>
+{% endblock main %}

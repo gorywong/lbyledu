@@ -9,19 +9,19 @@
 @Last Modified time: 2019-01-21 15:57:51
 @Description:
 """
-from django.shortcuts import render, reverse
+from django.shortcuts import reverse
 from django.http import HttpResponseRedirect
-from django.views.generic import RedirectView, FormView
-from django.views.generic.base import TemplateView, View
+from django.views.generic import RedirectView, FormView, DetailView
+from django.views.generic.base import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import never_cache
 from django.contrib import auth
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.utils.http import is_safe_url
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, ForgetPasswordForm
 from .models import UserProfile
 
 # Create your views here.
@@ -96,5 +96,9 @@ class PasswordChangeView(View):
     pass
 
 
-class UserProfileView(View):
-    pass
+class UserProfileView(DetailView):
+    model = UserProfile
+    template_name = 'users/userprofile.html'
+    context_object_name = 'user'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'

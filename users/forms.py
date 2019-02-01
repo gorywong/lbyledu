@@ -58,15 +58,3 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ("username", "email")
-
-
-class ForgetPasswordForm(forms.ModelForm):
-    DEFAULT_ERROR_MESSAGES = {'required': '请填写该字段', 'invalid_choice': '请正确填写该字段'}
-
-    class Meta:
-        model = EmailVerifyRecord
-        fields = ['email', 'code']
-        labels = {
-            'email': "邮箱地址",
-            'code': "验证码",
-        }

@@ -70,3 +70,5 @@ collectedstatic/
 spiders/
 media/
 uwsgi.ini
+
+TODO.md

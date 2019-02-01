@@ -20,8 +20,9 @@ from django.views.decorators.cache import never_cache
 from django.contrib import auth
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView
 from django.utils.http import is_safe_url
-from .forms import LoginForm, RegisterForm, ForgetPasswordForm
+from .forms import LoginForm, RegisterForm
 from .models import UserProfile
 
 # Create your views here.
@@ -80,7 +81,7 @@ class RegisterView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        if form.is_valid():    
+        if form.is_valid():
             user = form.save(False)
             if UserProfile.objects.filter(email=user.email):
                 form._errors['email_exists'] = '* 该邮件地址已被使用'
@@ -92,7 +93,7 @@ class RegisterView(FormView):
             return self.render_to_response({'form': form})
 
     
-class PasswordChangeView(View):
+class MyPasswordChangeView(PasswordChangeView):
     pass
 
 
@@ -102,3 +103,7 @@ class UserProfileView(DetailView):
     context_object_name = 'user'
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
+
+class MyPasswordResetView(PasswordResetView):
+    pass
